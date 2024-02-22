@@ -25,8 +25,12 @@
         private void InitializeComponent() {
             this.Area_Play = new System.Windows.Forms.PictureBox();
             this.Area_Display = new System.Windows.Forms.PictureBox();
+            this.Plate = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Plate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Area_Play
@@ -46,18 +50,40 @@
             this.Area_Display.TabIndex = 1;
             this.Area_Display.TabStop = false;
             // 
+            // Plate
+            // 
+            this.Plate.Location = new System.Drawing.Point(293, 499);
+            this.Plate.Name = "Plate";
+            this.Plate.Size = new System.Drawing.Size(100, 40);
+            this.Plate.TabIndex = 2;
+            this.Plate.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(775, 452);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(156, 59);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // HamburgerGAME
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.Plate);
             this.Controls.Add(this.Area_Display);
             this.Controls.Add(this.Area_Play);
             this.Name = "HamburgerGAME";
             this.Text = "ハンバーガーゲーム";
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Plate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -66,6 +92,8 @@
 
         private System.Windows.Forms.PictureBox Area_Play;
         private System.Windows.Forms.PictureBox Area_Display;
+        private System.Windows.Forms.PictureBox Plate;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
