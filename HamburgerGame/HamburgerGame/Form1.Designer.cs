@@ -23,10 +23,12 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.Area_Play = new System.Windows.Forms.PictureBox();
             this.Area_Display = new System.Windows.Forms.PictureBox();
             this.Plate = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).BeginInit();
@@ -52,6 +54,7 @@
             // 
             // Plate
             // 
+            this.Plate.BackColor = System.Drawing.Color.White;
             this.Plate.Location = new System.Drawing.Point(293, 499);
             this.Plate.Name = "Plate";
             this.Plate.Size = new System.Drawing.Size(100, 40);
@@ -68,6 +71,10 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // HamburgerGAME
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -80,6 +87,7 @@
             this.Controls.Add(this.Area_Play);
             this.Name = "HamburgerGAME";
             this.Text = "ハンバーガーゲーム";
+            this.Load += new System.EventHandler(this.HamburgerGAME_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).EndInit();
@@ -94,6 +102,7 @@
         private System.Windows.Forms.PictureBox Area_Display;
         private System.Windows.Forms.PictureBox Plate;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
