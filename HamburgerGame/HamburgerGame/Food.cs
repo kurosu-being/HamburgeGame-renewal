@@ -13,13 +13,13 @@ namespace HamburgerGame {
         }
 
         // 具材の相対的な位置を変更するメソッド
-        public void Move(int deltaX, int deltaY) {
-            Rectangle = new Rectangle(Rectangle.X + deltaX, Rectangle.Y + deltaY, Rectangle.Width, Rectangle.Height);
+        public void Move(int vDeltaX, int vDeltaY) {
+            Rectangle = new Rectangle(Rectangle.X + vDeltaX, Rectangle.Y + vDeltaY, Rectangle.Width, Rectangle.Height);
         }
 
         // 具材の絶対的な位置を変更するメソッド
-        public void MoveTo(int newX, int newY) {
-            Rectangle = new Rectangle(newX, newY, Rectangle.Width, Rectangle.Height);
+        public void MoveTo(int vNewX, int vNewY) {
+            Rectangle = new Rectangle(vNewX, vNewY, Rectangle.Width, Rectangle.Height);
         }
 
 
