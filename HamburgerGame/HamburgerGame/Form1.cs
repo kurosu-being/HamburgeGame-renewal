@@ -1,18 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
     public partial class HamburgerGAME : Form {
-        private const int C_FoodWidth = 50; // 具材の幅
-        private const int C_FoodHeight = 50; // 具材の高さ
-        private const int C_FallingSpeed = 5; // 具材の降下速度
-        private const int C_NewFoodInterval = 1200; // 新しい具材を生成する間隔 (ミリ秒)
-        private List<Food> FFoodList; // 具材のリスト
-        private Timer FTimer;
+        /// <summary>
+        /// 具材の幅
+        /// </summary>
+        private const int C_FoodWidth = 50;
+        /// <summary>
+        /// 具材の高さ
+        /// </summary>
+        private const int C_FoodHeight = 50;
+        /// <summary>
+        /// 具材の降下速度
+        /// </summary>
+        private const int C_FallingSpeed = 5;
+        /// <summary>
+        /// 新しい具材を生成する間隔 (ミリ秒)
+        /// </summary>
+        private const int C_NewFoodInterval = 1200; 
+        /// <summary>
+        /// 具材のリスト
+        /// </summary>
+        private List<Food> FFoodList; 
+        /// <summary>
+        /// タイマーの変数
+        /// </summary>
+        private Timer FTimer;　
+        /// <summary>
+        /// ランダムな変数
+        /// </summary>
         private Random FRandom;
+        /// <summary>
+        /// 経過時間
+        /// </summary>
         private int FElapsedTime = 0;
 
         public HamburgerGAME() {
@@ -21,7 +43,7 @@ namespace HamburgerGame {
 
         }
         private void InitializeGame() {
-            FFoodList = new List<Food>(); // 具材のリストを初期化
+            FFoodList = new List<Food>(); 
             FRandom = new Random();
 
             // ゲーム用タイマーを設定
@@ -31,7 +53,7 @@ namespace HamburgerGame {
             FTimer.Start();
         }
 
-            private void pictureBox1_Click(object sender, EventArgs e) {
+        private void pictureBox1_Click(object sender, EventArgs e) {
 
         }
 
@@ -52,7 +74,7 @@ namespace HamburgerGame {
                 // 具材が画面外に出たらリストから削除
                 if (wFood.Rectangle.Y > Area_Play.Height) {
                     FFoodList.Remove(wFood);
-                    break; // foreach ループから抜ける
+                    break;
                 }
             }
 
@@ -61,21 +83,31 @@ namespace HamburgerGame {
 
         }
 
+        /// <summary>
+        /// 新しい具材を生成してリストに追加するメソッド
+        /// </summary>
         private void AddNewFood() {
-            // 新しい具材を生成してリストに追加
             int wNewX = FRandom.Next(0, Area_Play.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
-            Food wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight);
+            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight);
             FFoodList.Add(wNewFood);
         }
 
+        /// <summary>
+        /// 全ての具材を描画するメソッド
+        /// </summary>
         private void Area_Play_Paint(object sender, PaintEventArgs e) {
-            // 全ての具材を描画
+
             foreach (Food wFood in FFoodList) {
                 wFood.Draw(e.Graphics);
             }
         }
 
+        /// <summary>
+        /// 最初の具材を描画し、画面をロードした時に再描画するメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HamburgerGAME_Load_1(object sender, EventArgs e) {
             Area_Play.Paint += Area_Play_Paint;
             AddNewFood();

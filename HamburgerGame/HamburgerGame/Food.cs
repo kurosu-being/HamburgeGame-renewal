@@ -1,29 +1,46 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Drawing;
 
 namespace HamburgerGame {
-    // 具材（食べ物）を表すクラス
+    // 具材クラス
     public class Food {
-        private static readonly Color FFoodColor = Color.Brown; // 具材の色
-        public Rectangle Rectangle { get; private set; } // 具材の座標
+        /// <summary>
+        /// 具材の長方形の色
+        /// </summary>
+        private static readonly Color FFoodColor = Color.Brown;
+        /// <summary>
+        /// // 具材の座標
+        /// </summary>
+        public Rectangle Rectangle { get; private set; } 
 
+        /// <summary>
+        /// フードのコンストラクタ
+        /// </summary>
+        /// <param name="vX">X座標</param>
+        /// <param name="vY">Y座標</param>
+        /// <param name="vWidth">幅</param>
+        /// <param name="vHeight">高さ</param>
         public Food(int vX, int vY, int vWidth, int vHeight) {
             Rectangle = new Rectangle(vX, vY, vWidth, vHeight);
         }
 
-        // 具材の相対的な位置を変更するメソッド
+        /// <summary>
+        ///  具材の相対的な位置を変更するメソッド
+        /// </summary>
         public void Move(int vDeltaX, int vDeltaY) {
             Rectangle = new Rectangle(Rectangle.X + vDeltaX, Rectangle.Y + vDeltaY, Rectangle.Width, Rectangle.Height);
         }
 
-        // 具材の絶対的な位置を変更するメソッド
+        /// <summary>
+        /// 具材の絶対的な位置を変更するメソッド
+        /// </summary>
         public void MoveTo(int vNewX, int vNewY) {
             Rectangle = new Rectangle(vNewX, vNewY, Rectangle.Width, Rectangle.Height);
         }
 
 
-        // 具材を描画するメソッド
+        /// <summary>
+        /// 具材を描画するメソッド
+        /// </summary>
         public void Draw(Graphics g) {
             g.FillRectangle(new SolidBrush(FFoodColor), Rectangle);
         }
