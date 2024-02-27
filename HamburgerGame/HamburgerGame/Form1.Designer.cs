@@ -35,9 +35,9 @@
             // 
             // Area_Play
             // 
-            this.Area_Play.Location = new System.Drawing.Point(-3, 1);
+            this.Area_Play.Location = new System.Drawing.Point(-1, 1);
             this.Area_Play.Name = "Area_Play";
-            this.Area_Play.Size = new System.Drawing.Size(700, 560);
+            this.Area_Play.Size = new System.Drawing.Size(703, 560);
             this.Area_Play.TabIndex = 0;
             this.Area_Play.TabStop = false;
             // 
@@ -52,21 +52,23 @@
             // 
             // Plate
             // 
-            this.Plate.Location = new System.Drawing.Point(293, 499);
+            this.Plate.Image = global::HamburgerGame.Properties.Resources.dish;
+            this.Plate.Location = new System.Drawing.Point(262, 486);
             this.Plate.Name = "Plate";
-            this.Plate.Size = new System.Drawing.Size(100, 40);
+            this.Plate.Size = new System.Drawing.Size(158, 51);
+            this.Plate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Plate.TabIndex = 2;
             this.Plate.TabStop = false;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::HamburgerGame.Properties.Resources.bun_under;
             this.pictureBox1.Location = new System.Drawing.Point(775, 452);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(156, 59);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // HamburgerGAME
             // 
