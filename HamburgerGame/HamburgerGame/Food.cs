@@ -31,14 +31,6 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// 具材の絶対的な位置を変更するメソッド
-        /// </summary>
-        public void MoveTo(int vNewX, int vNewY) {
-            Rectangle = new Rectangle(vNewX, vNewY, Rectangle.Width, Rectangle.Height);
-        }
-
-
-        /// <summary>
         /// 具材を描画するメソッド
         /// </summary>
         public void Draw(Graphics g) {

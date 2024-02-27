@@ -35,9 +35,7 @@
             // 
             // Area_Play
             // 
-            this.Area_Play.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Area_Play.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
             this.Area_Play.Location = new System.Drawing.Point(-3, 1);
             this.Area_Play.Name = "Area_Play";
             this.Area_Play.Size = new System.Drawing.Size(700, 560);
@@ -84,6 +82,8 @@
             this.Controls.Add(this.Plate);
             this.Controls.Add(this.Area_Display);
             this.Controls.Add(this.Area_Play);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "HamburgerGAME";
             this.Text = "ハンバーガーゲーム";
             this.Load += new System.EventHandler(this.HamburgerGAME_Load_1);

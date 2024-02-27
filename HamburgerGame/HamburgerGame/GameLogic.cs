@@ -3,18 +3,49 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
+    //ゲームロジックのクラス
     public class GameLogic {
+        /// <summary>
+        /// 具材の幅
+        /// </summary>
         private const int C_FoodWidth = 50;
+        /// <summary>
+        /// 具材の高さ
+        /// </summary>
         private const int C_FoodHeight = 50;
+        /// <summary>
+        /// 具材の落ちるスピード
+        /// </summary>
         private const int C_FallingSpeed = 5;
+        /// <summary>
+        /// 具材の追加されるインターバル
+        /// </summary>
         private const int C_NewFoodInterval = 1200;
-
+        /// <summary>
+        /// 表示される具材が追加されるリスト
+        /// </summary>
         private List<Food> FFoodList;
+        /// <summary>
+        /// タイマー
+        /// </summary>
         private Timer FTimer;
+        /// <summary>
+        /// ランダムな値の変数
+        /// </summary>
         private Random FRandom;
+        /// <summary>
+        /// 経過時間
+        /// </summary>
         private int FElapsedTime = 0;
+        /// <summary>
+        /// 描画されるPictureBox
+        /// </summary>
         private PictureBox FAreaPlay; 
 
+        /// <summary>
+        /// ゲームロジックのコンストラクタ
+        /// </summary>
+        /// <param name="vAreaPlay">描画するPictureBox</param>
         public GameLogic(PictureBox vAreaPlay) {
             FFoodList = new List<Food>();
             FRandom = new Random();
@@ -26,14 +57,19 @@ namespace HamburgerGame {
             FTimer.Start();
         }
 
+        /// <summary>
+        /// タイマーメソッド
+        /// </summary>
         private void Timer_Tick(object sender, EventArgs e) {
             FElapsedTime += FTimer.Interval;
-
+            
+            //インターバルごとに具材をリストに追加
             if (FElapsedTime >= C_NewFoodInterval) {
                 AddNewFood();
                 FElapsedTime = 0;
             }
 
+            //具材を落下させ、Y座標が描画されるPictureBoxのY座標に達した時削除される
             foreach (Food wFood in FFoodList.ToArray()) {
                 wFood.Move(0, C_FallingSpeed);
 
@@ -42,9 +78,13 @@ namespace HamburgerGame {
                 }
             }
 
+            //再描画をマークする
             FAreaPlay.Invalidate(); 
         }
 
+        /// <summary>
+        /// 新しい具材を画面外のランダムな位置に設定し、リストに追加するメソッド
+        /// </summary>
         private void AddNewFood() {
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
@@ -62,7 +102,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        ///　最初の具材を追加し、AreaPlayを更新するメソッド
+        ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
         /// <param name="e"></param>
         public void AreaPlay_Load(EventArgs e) {
