@@ -23,12 +23,10 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.Area_Play = new System.Windows.Forms.PictureBox();
             this.Area_Display = new System.Windows.Forms.PictureBox();
             this.Plate = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).BeginInit();
@@ -37,6 +35,9 @@
             // 
             // Area_Play
             // 
+            this.Area_Play.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Area_Play.Location = new System.Drawing.Point(-3, 1);
             this.Area_Play.Name = "Area_Play";
             this.Area_Play.Size = new System.Drawing.Size(700, 560);
@@ -45,6 +46,9 @@
             // 
             // Area_Display
             // 
+            this.Area_Display.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Area_Display.BackColor = System.Drawing.Color.Linen;
             this.Area_Display.Location = new System.Drawing.Point(700, 1);
             this.Area_Display.Name = "Area_Display";
@@ -71,14 +75,9 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // HamburgerGAME
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.pictureBox1);
@@ -102,7 +101,6 @@
         private System.Windows.Forms.PictureBox Area_Display;
         private System.Windows.Forms.PictureBox Plate;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Timer timer1;
     }
 }
 
