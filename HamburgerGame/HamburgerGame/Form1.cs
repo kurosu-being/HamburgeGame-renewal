@@ -15,14 +15,6 @@ namespace HamburgerGame {
 
             KeyDown += Form1_KeyDown;
         }
-
-        private void pictureBox1_Click(object vSender, EventArgs e) {
-
-        }
-
-        private void Plate_Click(object vSender, EventArgs e) {
-
-        }
         //左右キーでお皿の移動
         private void Form1_KeyDown(object vSender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Left) {
@@ -51,7 +43,5 @@ namespace HamburgerGame {
                 Plate.Location = pt;
             }
         }
-
-
     }
 }
