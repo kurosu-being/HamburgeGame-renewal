@@ -40,7 +40,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 描画されるPictureBox
         /// </summary>
-        private PictureBox FAreaPlay; 
+        private PictureBox FAreaPlay;
 
         /// <summary>
         /// ゲームロジックのコンストラクタ
@@ -49,7 +49,7 @@ namespace HamburgerGame {
         public GameLogic(PictureBox vAreaPlay) {
             FFoodList = new List<Food>();
             FRandom = new Random();
-            FAreaPlay = vAreaPlay; 
+            FAreaPlay = vAreaPlay;
 
             FTimer = new Timer();
             FTimer.Interval = 20;
@@ -58,11 +58,11 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// タイマーメソッド
+        /// インターバルごとに具材を追加し、具材とArea_PlayのY座標が一致した時具材を消去するメソッド
         /// </summary>
         private void Timer_Tick(object sender, EventArgs e) {
             FElapsedTime += FTimer.Interval;
-            
+
             //インターバルごとに具材をリストに追加
             if (FElapsedTime >= C_NewFoodInterval) {
                 AddNewFood();
@@ -73,13 +73,13 @@ namespace HamburgerGame {
             foreach (Food wFood in FFoodList.ToArray()) {
                 wFood.Move(0, C_FallingSpeed);
 
-                if (wFood.Rectangle.Y > FAreaPlay.Height) { 
+                if (wFood.Rectangle.Y > FAreaPlay.Height) {
                     FFoodList.Remove(wFood);
                 }
             }
 
             //再描画をマークする
-            FAreaPlay.Invalidate(); 
+            FAreaPlay.Invalidate();
         }
 
         /// <summary>

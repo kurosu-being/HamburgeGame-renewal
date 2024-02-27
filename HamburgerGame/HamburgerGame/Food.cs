@@ -10,7 +10,7 @@ namespace HamburgerGame {
         /// <summary>
         /// // 具材の座標
         /// </summary>
-        public Rectangle Rectangle { get; private set; } 
+        public Rectangle Rectangle { get; private set; }
 
         /// <summary>
         /// フードのコンストラクタ

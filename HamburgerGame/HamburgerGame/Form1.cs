@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -27,7 +26,7 @@ namespace HamburgerGame {
 
         }
 
-        private void HamburgerGAME_Load_1(object sender, EventArgs e) {           
+        private void HamburgerGAME_Load_1(object sender, EventArgs e) {
         }
     }
 }
