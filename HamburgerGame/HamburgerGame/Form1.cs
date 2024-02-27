@@ -25,22 +25,22 @@ namespace HamburgerGame {
         }
         void MoveLeft() {
             // Plateの現在位置を取得
-            Point pt = Plate.Location;
-            // 移動量を5ピクセルに設定して左に移動
-            pt.X -= 10;
+            Point wPt = Plate.Location;
+            // 移動量を10ピクセルに設定して左に移動
+            wPt.X -= 10;
             // 移動後の位置がフォームの境界内であるかをチェックし、境界内であれば更新
-            if (pt.X >= 0) {
-                Plate.Location = pt;
+            if (wPt.X >= 0) {
+                Plate.Location = wPt;
             }
         }
         void MoveRight() {
             // Plateの現在位置を取得
-            Point pt = Plate.Location;
-            // 移動量を5ピクセルに設定して右に移動
-            pt.X += 10;
+            Point wPt = Plate.Location;
+            // 移動量を10ピクセルに設定して右に移動
+            wPt.X += 10;
             // 移動後の位置がフォームの境界内であるかをチェックし、境界内であれば更新
-            if (pt.X + Plate.Width <= Area_Play.Width) {
-                Plate.Location = pt;
+            if (wPt.X + Plate.Width <= Area_Play.Width) {
+                Plate.Location = wPt;
             }
         }
     }
