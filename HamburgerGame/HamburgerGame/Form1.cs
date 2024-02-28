@@ -21,7 +21,7 @@ namespace HamburgerGame {
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
         private void InitializeGame() {
-            FGameLogic = new GameLogic(Area_Play);
+            FGameLogic = new GameLogic(Area_Play, Plate);
             FGameLogic.AreaPlay_Load(null);
         }
         //左右キーでお皿の移動

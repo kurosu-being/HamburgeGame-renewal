@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -41,15 +42,24 @@ namespace HamburgerGame {
         /// 描画されるPictureBox
         /// </summary>
         private PictureBox FAreaPlay;
+        /// <summary>
+        /// 皿のPictureBox
+        /// </summary>
+        private PictureBox FPlate;
+        /// <summary>
+        /// 表示される具材が追加されるリスト
+        /// </summary>
+        private List<Food> FDisplayList;
 
         /// <summary>
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
-        public GameLogic(PictureBox vAreaPlay) {
+        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate) {
             FFoodList = new List<Food>();
             FRandom = new Random();
             FAreaPlay = vAreaPlay;
+            FPlate = vPlate; // 皿の情報を保持
 
             FTimer = new Timer();
             FTimer.Interval = 20;
@@ -77,6 +87,12 @@ namespace HamburgerGame {
                     FFoodList.Remove(wFood);
                 }
             }
+
+            CheckCollisions(); // 当たり判定を実行
+            foreach(var wList in FDisplayList){
+                MessageBox.Show($"");
+            }
+            MessageBox.Show($"");
 
             //再描画をマークする
             FAreaPlay.Invalidate();
@@ -108,6 +124,27 @@ namespace HamburgerGame {
         public void AreaPlay_Load(EventArgs e) {
             FAreaPlay.Paint += AreaPlay_Paint;
             AddNewFood();
+        }
+
+        /// <summary>
+        /// Plate の位置情報を取得するためのメソッド
+        /// </summary>
+        private Rectangle GetPlateRectangle() {
+            return FPlate.Bounds;
+        }
+
+        /// <summary>
+        /// 具材と皿の当たり判定を行うメソッドを追加
+        /// </summary>
+        private void CheckCollisions() {
+            Rectangle wPlateRect = GetPlateRectangle();
+
+            foreach (Food wFood in FFoodList.ToArray()) {
+                if (wFood.Rectangle.IntersectsWith(wPlateRect)) {
+                    FDisplayList.Add(wFood);
+                    FFoodList.Remove(wFood);
+                }
+            }
         }
     }
 }
