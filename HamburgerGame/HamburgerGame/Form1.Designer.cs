@@ -26,11 +26,11 @@
             this.Area_Play = new System.Windows.Forms.PictureBox();
             this.Area_Display = new System.Windows.Forms.PictureBox();
             this.Plate = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bun_under = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bun_under)).BeginInit();
             this.SuspendLayout();
             // 
             // Area_Play
@@ -38,7 +38,7 @@
             this.Area_Play.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
             this.Area_Play.Location = new System.Drawing.Point(-3, 1);
             this.Area_Play.Name = "Area_Play";
-            this.Area_Play.Size = new System.Drawing.Size(700, 560);
+            this.Area_Play.Size = new System.Drawing.Size(703, 560);
             this.Area_Play.TabIndex = 0;
             this.Area_Play.TabStop = false;
             // 
@@ -58,27 +58,29 @@
             // 
             this.Plate.BackColor = System.Drawing.Color.White;
             this.Plate.Location = new System.Drawing.Point(293, 499);
+            this.Plate.Image = global::HamburgerGame.Properties.Resources.dish;
             this.Plate.Name = "Plate";
-            this.Plate.Size = new System.Drawing.Size(100, 40);
+            this.Plate.Size = new System.Drawing.Size(158, 51);
+            this.Plate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Plate.TabIndex = 2;
             this.Plate.TabStop = false;
             // 
-            // pictureBox1
+            // bun_under
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(775, 452);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(156, 59);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.bun_under.Image = global::HamburgerGame.Properties.Resources.bun_under;
+            this.bun_under.Location = new System.Drawing.Point(775, 452);
+            this.bun_under.Name = "bun_under";
+            this.bun_under.Size = new System.Drawing.Size(156, 59);
+            this.bun_under.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.bun_under.TabIndex = 3;
+            this.bun_under.TabStop = false;
             // 
             // HamburgerGAME
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.bun_under);
             this.Controls.Add(this.Plate);
             this.Controls.Add(this.Area_Display);
             this.Controls.Add(this.Area_Play);
@@ -90,7 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bun_under)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -100,7 +102,7 @@
         private System.Windows.Forms.PictureBox Area_Play;
         private System.Windows.Forms.PictureBox Area_Display;
         private System.Windows.Forms.PictureBox Plate;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox bun_under;
     }
 }
 
