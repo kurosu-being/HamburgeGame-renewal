@@ -11,16 +11,26 @@ namespace HamburgerGame {
         /// // 具材の座標
         /// </summary>
         public Rectangle Rectangle { get; private set; }
+        /// <summary>
+        /// 具材の画像
+        /// </summary>
+        public Image FoodImage { get; private set; }
+        /// <summary>
+        /// 具材の画像パス
+        /// </summary>
+        public string ImagePath { get; private set; }
 
         /// <summary>
         /// フードのコンストラクタ
         /// </summary>
-        /// <param name="vX">X座標</param>
-        /// <param name="vY">Y座標</param>
+        /// <param name="vPositionX">X座標</param>
+        /// <param name="vPositionY">Y座標</param>
         /// <param name="vWidth">幅</param>
         /// <param name="vHeight">高さ</param>
-        public Food(int vX, int vY, int vWidth, int vHeight) {
+        public Food(int vX, int vY, int vWidth, int vHeight, string vImage) {
             Rectangle = new Rectangle(vX, vY, vWidth, vHeight);
+            FoodImage = Image.FromFile(vImage);
+            ImagePath = vImage;
         }
 
         /// <summary>
@@ -34,7 +44,7 @@ namespace HamburgerGame {
         /// 具材を描画するメソッド
         /// </summary>
         public void Draw(Graphics g) {
-            g.FillRectangle(new SolidBrush(FFoodColor), Rectangle);
+            g.DrawImage(FoodImage, Rectangle);
         }
     }
 }
