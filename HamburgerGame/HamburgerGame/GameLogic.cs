@@ -8,11 +8,11 @@ namespace HamburgerGame {
         /// <summary>
         /// 具材の幅
         /// </summary>
-        private const int C_FoodWidth = 50;
+        private const int C_FoodWidth = 140;
         /// <summary>
         /// 具材の高さ
         /// </summary>
-        private const int C_FoodHeight = 50;
+        private const int C_FoodHeight = 70;
         /// <summary>
         /// 具材の落ちるスピード
         /// </summary>
@@ -41,6 +41,15 @@ namespace HamburgerGame {
         /// 描画されるPictureBox
         /// </summary>
         private PictureBox FAreaPlay;
+
+        /// <summary>
+        /// 画像パス
+        /// </summary>
+        private string FBun_TopPath = @"..\..\Image\bun_top.png";
+        private string FCheesePath = @"..\..\Image\cheese.png";
+        private string FPattyPath = @"..\..\Image\patty.png";
+        private string FLettucePath = @"..\..\Image\lettuce.png";
+        private string FTomatoPath = @"..\..\Image\tomato.png";
 
         /// <summary>
         /// ゲームロジックのコンストラクタ
@@ -88,7 +97,9 @@ namespace HamburgerGame {
         private void AddNewFood() {
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
-            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight);
+            string[] wImagePaths = { FBun_TopPath, FCheesePath, FPattyPath, FLettucePath, FTomatoPath };
+            string wRandomImagePath = wImagePaths[FRandom.Next(wImagePaths.Length)];
+            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomImagePath);
             FFoodList.Add(wNewFood);
         }
 
