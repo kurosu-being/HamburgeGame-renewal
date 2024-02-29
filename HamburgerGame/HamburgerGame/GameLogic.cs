@@ -43,9 +43,9 @@ namespace HamburgerGame {
         /// </summary>
         private PictureBox FAreaPlay;
         /// <summary>
-        /// 皿のPictureBox
+        /// Plateクラスのインスタンス
         /// </summary>
-        private PictureBox FPlatePictureBox;
+        private Plate FPlate;
         /// <summary>
         /// 表示される具材が追加されるリスト
         /// </summary>
@@ -54,10 +54,7 @@ namespace HamburgerGame {
         /// リストが機能しているか確かめるリストボックス（不要なもの）
         /// </summary>
         private ListBox FListBox;
-        /// <summary>
-        /// Plateクラスのインスタンス
-        /// </summary>
-        private Plate FPlate;
+        
 
         /// <summary>
         /// 画像パス
@@ -77,7 +74,6 @@ namespace HamburgerGame {
             FDisplayList = new List<Food>();
             FRandom = new Random();
             FAreaPlay = vAreaPlay;
-            FPlatePictureBox = vPlate;
             FListBox = vKakutoku;
             FPlate = new Plate(vPlate);
 
@@ -149,7 +145,7 @@ namespace HamburgerGame {
         /// Plate の位置情報を取得するためのメソッド
         /// </summary>
         private Rectangle GetPlateRectangle() {
-            return FPlatePictureBox.Bounds;
+            return FPlate.PlatePictureBox.Bounds;
         }
 
         /// <summary>
@@ -178,9 +174,11 @@ namespace HamburgerGame {
             }
         }
 
-        // キー入力を受け取り、皿を移動させる
-        public void ProcessKeyPress(Keys key, int areaWidth) {
-            FPlate.MovePlate(key, areaWidth);
+        /// <summary>
+        /// キー入力を受け取り、皿を移動させる
+        /// </summary>
+        public void ProcessKeyPress(Keys key, int vAreaWidth) {
+            FPlate.MovePlate(key, vAreaWidth);
         }
     }
 }
