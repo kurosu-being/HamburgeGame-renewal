@@ -27,6 +27,7 @@
             this.Area_Display = new System.Windows.Forms.PictureBox();
             this.Plate = new System.Windows.Forms.PictureBox();
             this.bun_under = new System.Windows.Forms.PictureBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).BeginInit();
@@ -57,8 +58,8 @@
             // Plate
             // 
             this.Plate.BackColor = System.Drawing.Color.White;
-            this.Plate.Location = new System.Drawing.Point(293, 499);
             this.Plate.Image = global::HamburgerGame.Properties.Resources.dish;
+            this.Plate.Location = new System.Drawing.Point(293, 499);
             this.Plate.Name = "Plate";
             this.Plate.Size = new System.Drawing.Size(158, 51);
             this.Plate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -75,11 +76,21 @@
             this.bun_under.TabIndex = 3;
             this.bun_under.TabStop = false;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(769, 56);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(161, 232);
+            this.listBox1.TabIndex = 4;
+            // 
             // HamburgerGAME
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.bun_under);
             this.Controls.Add(this.Plate);
             this.Controls.Add(this.Area_Display);
@@ -103,6 +114,7 @@
         private System.Windows.Forms.PictureBox Area_Display;
         private System.Windows.Forms.PictureBox Plate;
         private System.Windows.Forms.PictureBox bun_under;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

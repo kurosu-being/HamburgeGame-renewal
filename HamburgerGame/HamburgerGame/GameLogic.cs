@@ -45,11 +45,19 @@ namespace HamburgerGame {
         /// <summary>
         /// 皿のPictureBox
         /// </summary>
-        private PictureBox FPlate;
+        private PictureBox FPlatePictureBox;
         /// <summary>
         /// 表示される具材が追加されるリスト
         /// </summary>
         private List<Food> FDisplayList;
+        /// <summary>
+        /// リストが機能しているか確かめるリストボックス（不要なもの）
+        /// </summary>
+        private ListBox FListBox;
+        /// <summary>
+        /// Plateクラスのインスタンス
+        /// </summary>
+        private Plate FPlate;
 
         /// <summary>
         /// 画像パス
@@ -64,11 +72,14 @@ namespace HamburgerGame {
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
-        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate) {
+        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
             FFoodList = new List<Food>();
+            FDisplayList = new List<Food>();
             FRandom = new Random();
             FAreaPlay = vAreaPlay;
-            FPlate = vPlate; // 皿の情報を保持
+            FPlatePictureBox = vPlate;
+            FListBox = vKakutoku;
+            FPlate = new Plate(vPlate);
 
             FTimer = new Timer();
             FTimer.Interval = 20;
@@ -97,11 +108,8 @@ namespace HamburgerGame {
                 }
             }
 
-            CheckCollisions(); // 当たり判定を実行
-            foreach(var wList in FDisplayList){
-                MessageBox.Show($"");
-            }
-            MessageBox.Show($"");
+            // 当たり判定を実行
+            CheckCollisions();
 
             //再描画をマークする
             FAreaPlay.Invalidate();
@@ -141,7 +149,7 @@ namespace HamburgerGame {
         /// Plate の位置情報を取得するためのメソッド
         /// </summary>
         private Rectangle GetPlateRectangle() {
-            return FPlate.Bounds;
+            return FPlatePictureBox.Bounds;
         }
 
         /// <summary>
@@ -153,9 +161,26 @@ namespace HamburgerGame {
             foreach (Food wFood in FFoodList.ToArray()) {
                 if (wFood.Rectangle.IntersectsWith(wPlateRect)) {
                     FDisplayList.Add(wFood);
+                    ShowCollisionMessage(wFood);
                     FFoodList.Remove(wFood);
                 }
             }
+        }
+
+        // <summary>
+        /// 衝突時のメッセージを表示するメソッド
+        /// </summary>
+        /// <param name="food">衝突した具材</param>
+        private void ShowCollisionMessage(Food food) {
+            FListBox.Items.Clear();
+            foreach (Food wFood in FDisplayList) {
+                FListBox.Items.Add(wFood.ImagePath);
+            }
+        }
+
+        // キー入力を受け取り、皿を移動させる
+        public void ProcessKeyPress(Keys key, int areaWidth) {
+            FPlate.MovePlate(key, areaWidth);
         }
     }
 }

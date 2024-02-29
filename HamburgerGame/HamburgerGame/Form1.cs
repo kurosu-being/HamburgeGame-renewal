@@ -13,7 +13,9 @@ namespace HamburgerGame {
             InitializeComponent();
             InitializeGame();
 
-            KeyDown += Form1_KeyDown;
+            // フォームのKeyDownイベントにイベントハンドラを関連付ける
+            KeyPreview = true; // キー入力をフォームが優先的に受け取るようにする
+            KeyDown += HamburgerGAME_KeyDown;
         }
 
 
@@ -21,36 +23,13 @@ namespace HamburgerGame {
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
         private void InitializeGame() {
-            FGameLogic = new GameLogic(Area_Play, Plate);
+            FGameLogic = new GameLogic(Area_Play, Plate, listBox1);
             FGameLogic.AreaPlay_Load(null);
         }
-        //左右キーでお皿の移動
-        private void Form1_KeyDown(object vSender, KeyEventArgs e) {
-            if (e.KeyCode == Keys.Left) {
-                MoveLeft();
-            } else if (e.KeyCode == Keys.Right) {
-                MoveRight();
-            }
-        }
-        void MoveLeft() {
-            // Plateの現在位置を取得
-            Point wPt = Plate.Location;
-            // 移動量を10ピクセルに設定して左に移動
-            wPt.X -= 10;
-            // 移動後の位置がフォームの境界内であるかをチェックし、境界内であれば更新
-            if (wPt.X >= 0) {
-                Plate.Location = wPt;
-            }
-        }
-        void MoveRight() {
-            // Plateの現在位置を取得
-            Point wPt = Plate.Location;
-            // 移動量を10ピクセルに設定して右に移動
-            wPt.X += 10;
-            // 移動後の位置がフォームの境界内であるかをチェックし、境界内であれば更新
-            if (wPt.X + Plate.Width <= Area_Play.Width) {
-                Plate.Location = wPt;
-            }
+
+        // キー入力を受け取り、皿を移動させる
+        private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
+            FGameLogic.ProcessKeyPress(e.KeyCode, Area_Play.Width);
         }
 
         private void HamburgerGAME_Load_1(object sender, EventArgs e) {
