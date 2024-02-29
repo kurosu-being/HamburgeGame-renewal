@@ -54,7 +54,15 @@ namespace HamburgerGame {
         /// リストが機能しているか確かめるリストボックス（不要なもの）
         /// </summary>
         private ListBox FListBox;
-        
+        /// <summary>
+        /// 具材の幅の当たり判定調整
+        /// </summary>
+        private int FSomeValueX = 30;
+        /// <summary>
+        /// 具材の高さの当たり判定調整
+        /// </summary>
+        private int FSomeValueY = 10;
+
 
         /// <summary>
         /// 画像パス
@@ -155,7 +163,11 @@ namespace HamburgerGame {
             Rectangle wPlateRect = GetPlateRectangle();
 
             foreach (Food wFood in FFoodList.ToArray()) {
-                if (wFood.Rectangle.IntersectsWith(wPlateRect)) {
+                // 具材の矩形を調整
+                Rectangle wAdjustmentFoodRect = wFood.Rectangle;
+                wAdjustmentFoodRect.Inflate(-FSomeValueX, -FSomeValueY); 
+
+                if (wAdjustmentFoodRect.IntersectsWith(wPlateRect)) {
                     FDisplayList.Add(wFood);
                     ShowCollisionMessage(wFood);
                     FFoodList.Remove(wFood);
