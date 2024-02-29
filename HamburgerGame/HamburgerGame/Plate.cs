@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -11,7 +10,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 皿のPictureBox
         /// </summary>
-        public PictureBox PlatePictureBox { get; set; }
+        public PictureBox PlatePictureBox { get; private set; }
 
         /// <summary>
         /// 皿のコンストラクタ
