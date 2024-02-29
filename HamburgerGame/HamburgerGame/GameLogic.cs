@@ -179,7 +179,7 @@ namespace HamburgerGame {
         /// 衝突時のメッセージを表示するメソッド
         /// </summary>
         /// <param name="food">衝突した具材</param>
-        private void ShowCollisionMessage(Food food) {
+        private void ShowCollisionMessage(Food vFood) {
             FListBox.Items.Clear();
             foreach (Food wFood in FDisplayList) {
                 FListBox.Items.Add(wFood.ImagePath);
