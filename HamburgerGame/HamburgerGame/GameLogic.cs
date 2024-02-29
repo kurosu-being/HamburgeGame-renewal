@@ -157,7 +157,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// 具材と皿の当たり判定を行うメソッドを追加
+        /// 具材と皿の当たり判定を行うメソッド
         /// </summary>
         private void CheckCollisions() {
             Rectangle wPlateRect = GetPlateRectangle();
@@ -187,7 +187,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// キー入力を受け取り、皿を移動させる
+        /// キー入力を受け取り、皿を移動させるメソッド
         /// </summary>
         public void ProcessKeyPress(Keys key, int vAreaWidth) {
             FPlate.MovePlate(key, vAreaWidth);

@@ -21,7 +21,9 @@ namespace HamburgerGame {
             PlatePictureBox = vPlatePictureBox;
         }
 
-        // 皿の移動処理
+        /// <summary>
+        /// 皿の移動処理のメソッド
+        /// </summary>
         public void MovePlate(Keys key, int vAreaWidth) {
             // 皿の現在位置を取得
             Point wLocation = PlatePictureBox.Location;
