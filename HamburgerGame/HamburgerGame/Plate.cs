@@ -4,9 +4,13 @@ using System.Windows.Forms;
 
 namespace HamburgerGame {
     public class Plate {
-        // 皿の移動速度
+        /// <summary>
+        /// 皿の移動速度
+        /// </summary>
         private const int C_PlateSpeed = 10;
-
+        /// <summary>
+        /// 皿のPictureBox
+        /// </summary>
         private PictureBox FPlatePictureBox;
 
         // コンストラクタ
