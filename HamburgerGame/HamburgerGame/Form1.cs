@@ -16,7 +16,6 @@ namespace HamburgerGame {
             KeyDown += Form1_KeyDown;
         }
 
-
         /// <summary>
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
@@ -52,7 +51,6 @@ namespace HamburgerGame {
                 Plate.Location = wPt;
             }
         }
-
         private void HamburgerGAME_Load_1(object sender, EventArgs e) {
         }
     }
