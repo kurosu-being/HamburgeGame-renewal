@@ -25,7 +25,12 @@ namespace HamburgerGame {
         /// <summary>
         /// 表示される具材が追加されるリスト
         /// </summary>
-        private List<Food> FFoodList;
+        private List<Food> FMoveFoodList;
+        /// <summary>
+        /// 描画されるPictureBox
+        /// </summary>
+        private PictureBox FAreaPlay;
+
         /// <summary>
         /// タイマー
         /// </summary>
@@ -38,18 +43,16 @@ namespace HamburgerGame {
         /// 経過時間
         /// </summary>
         private int FElapsedTime = 0;
-        /// <summary>
-        /// 描画されるPictureBox
-        /// </summary>
-        private PictureBox FAreaPlay;
+
+
         /// <summary>
         /// Plateクラスのインスタンス
         /// </summary>
         private Plate FPlate;
         /// <summary>
-        /// 表示される具材が追加されるリスト
+        /// 獲得した具材が追加されるリスト
         /// </summary>
-        private List<Food> FDisplayList;
+        private List<Food> FCatchFoodList;
         /// <summary>
         /// リストが機能しているか確かめるリストボックス（不要なもの）
         /// </summary>
@@ -62,7 +65,6 @@ namespace HamburgerGame {
         /// 具材の高さの当たり判定調整
         /// </summary>
         private int FSomeValueY = 10;
-
 
         /// <summary>
         /// 画像パス
@@ -78,8 +80,8 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
         public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
-            FFoodList = new List<Food>();
-            FDisplayList = new List<Food>();
+            FMoveFoodList = new List<Food>();
+            FCatchFoodList = new List<Food>();
             FRandom = new Random();
             FAreaPlay = vAreaPlay;
             FListBox = vKakutoku;
@@ -104,11 +106,11 @@ namespace HamburgerGame {
             }
 
             //具材を落下させ、Y座標が描画されるPictureBoxのY座標に達した時削除される
-            foreach (Food wFood in FFoodList.ToArray()) {
+            foreach (Food wFood in FMoveFoodList.ToArray()) {
                 wFood.Move(0, C_FallingSpeed);
 
                 if (wFood.Rectangle.Y > FAreaPlay.Height) {
-                    FFoodList.Remove(wFood);
+                    FMoveFoodList.Remove(wFood);
                 }
             }
 
@@ -128,14 +130,14 @@ namespace HamburgerGame {
             string[] wImagePaths = { FBun_TopPath, FCheesePath, FPattyPath, FLettucePath, FTomatoPath };
             string wRandomImagePath = wImagePaths[FRandom.Next(wImagePaths.Length)];
             var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomImagePath);
-            FFoodList.Add(wNewFood);
+            FMoveFoodList.Add(wNewFood);
         }
 
         /// <summary>
         /// 具材を描画するメソッド
         /// </summary>
         public void AreaPlay_Paint(object sender, PaintEventArgs e) {
-            foreach (Food wFood in FFoodList.ToArray()) {
+            foreach (Food wFood in FMoveFoodList.ToArray()) {
                 wFood.Draw(e.Graphics);
             }
         }
@@ -162,15 +164,15 @@ namespace HamburgerGame {
         private void CheckCollisions() {
             Rectangle wPlateRect = GetPlateRectangle();
 
-            foreach (Food wFood in FFoodList.ToArray()) {
+            foreach (Food wFood in FMoveFoodList.ToArray()) {
                 // 具材の矩形を調整
                 Rectangle wAdjustmentFoodRect = wFood.Rectangle;
                 wAdjustmentFoodRect.Inflate(-FSomeValueX, -FSomeValueY); 
 
                 if (wAdjustmentFoodRect.IntersectsWith(wPlateRect)) {
-                    FDisplayList.Add(wFood);
+                    FCatchFoodList.Add(wFood);
                     ShowCollisionMessage(wFood);
-                    FFoodList.Remove(wFood);
+                    FMoveFoodList.Remove(wFood);
                 }
             }
         }
@@ -181,7 +183,7 @@ namespace HamburgerGame {
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {
             FListBox.Items.Clear();
-            foreach (Food wFood in FDisplayList) {
+            foreach (Food wFood in FCatchFoodList) {
                 FListBox.Items.Add(wFood.ImagePath);
             }
         }
