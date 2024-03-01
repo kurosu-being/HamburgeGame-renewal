@@ -177,7 +177,7 @@ namespace HamburgerGame {
             }
         }
 
-        // <summary>
+        /// <summary>
         /// リストボックスに獲得した具材のパスを追加するメソッド（確認用）
         /// </summary>
         /// <param name="food">衝突した具材</param>
