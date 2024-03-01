@@ -147,7 +147,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// 具材を描画するメソッド
+        /// FMoveListの具材を描画するメソッド
         /// </summary>
         public void AreaPlay_Paint(object sender, PaintEventArgs e) {
             foreach (Food wFood in FMoveFoodList.ToArray()) {
