@@ -30,7 +30,7 @@ namespace HamburgerGame {
             Rectangle = new Rectangle(vX, vY, vWidth, vHeight);
             FoodImage = Properties.Resources.ResourceManager.GetObject(vResourceName) as Image;
             if (FoodImage == null) {
-                throw new ArgumentException("リソースの名前と一致するものがみつかりませんでした。リソースファイルの名前と具材の画像名が一致しているか確認してください。");
+                throw new ArgumentException("リソースの名前と一致するものがみつかりませんでした。リソースファイルの画像名とコードの具材の画像名が一致しているか確認してください。");
             }
             FoodImage.Tag = vResourceName; 
         }
