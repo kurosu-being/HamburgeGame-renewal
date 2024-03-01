@@ -54,7 +54,7 @@ namespace HamburgerGame {
         /// </summary>
         private List<Food> FCatchFoodList;
         /// <summary>
-        /// リストが機能しているか確かめるリストボックス（不要なもの）
+        /// リストが機能しているか確かめるリストボックス（確認用）
         /// </summary>
         private ListBox FListBox;
         /// <summary>
@@ -152,7 +152,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// Plate の位置情報を取得するためのメソッド
+        /// Plateの位置情報を取得するためのメソッド
         /// </summary>
         private Rectangle GetPlateRectangle() {
             return FPlate.PlatePictureBox.Bounds;
@@ -178,7 +178,7 @@ namespace HamburgerGame {
         }
 
         // <summary>
-        /// 衝突時のメッセージを表示するメソッド
+        /// リストボックスに獲得した具材のパスを追加するメソッド（確認用）
         /// </summary>
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {
