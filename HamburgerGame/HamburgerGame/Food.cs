@@ -27,12 +27,12 @@ namespace HamburgerGame {
         /// <param name="vWidth">幅</param>
         /// <param name="vHeight">高さ</param>
         public Food(int vX, int vY, int vWidth, int vHeight, string vResourceName) {
-            Rectangle = new Rectangle(vX, vY, vWidth, vHeight);
-            FoodImage = Properties.Resources.ResourceManager.GetObject(vResourceName) as Image;
+            this.Rectangle = new Rectangle(vX, vY, vWidth, vHeight);
+            this.FoodImage = Properties.Resources.ResourceManager.GetObject(vResourceName) as Image;
             if (FoodImage == null) {
                 throw new ArgumentException("リソースの名前と一致するものがみつかりませんでした。リソースファイルの画像名とコードの具材の画像名が一致しているか確認してください。");
             }
-            FoodImage.Tag = vResourceName; 
+            this.FoodImage.Tag = vResourceName;
         }
 
         /// <summary>

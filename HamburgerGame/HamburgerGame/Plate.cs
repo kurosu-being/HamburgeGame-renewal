@@ -20,7 +20,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vPlatePictureBox">皿のPictureBox</param>
         public Plate(PictureBox vPlatePictureBox) {
-            PlatePictureBox = vPlatePictureBox;
+            this.PlatePictureBox = vPlatePictureBox;
         }
 
         /// <summary>

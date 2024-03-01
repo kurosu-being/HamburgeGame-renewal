@@ -20,46 +20,15 @@ namespace HamburgerGame {
         /// <summary>
         /// 具材の落ちるスピード
         /// </summary>
-        private const int C_FallingSpeed = 5;
+        private const int C_FallingFoodSpeed = 5;
         /// <summary>
         /// 具材の追加されるインターバル
         /// </summary>
-        private const int C_NewFoodInterval = 1200;
-        /// <summary>
-        /// 表示される具材が追加されるリスト
-        /// </summary>
-        private List<Food> FMoveFoodList;
-        /// <summary>
-        /// 描画されるPictureBox
-        /// </summary>
-        private PictureBox FAreaPlay;
-
-        /// <summary>
-        /// タイマー
-        /// </summary>
-        private Timer FTimer;
-        /// <summary>
-        /// ランダムな値の変数
-        /// </summary>
-        private Random FRandom;
+        private const int C_AddNewFoodInterval = 1200;
         /// <summary>
         /// 経過時間
         /// </summary>
         private int FElapsedTime = 0;
-
-
-        /// <summary>
-        /// Plateクラスのインスタンス
-        /// </summary>
-        private Plate FPlate;
-        /// <summary>
-        /// 獲得した具材が追加されるリスト
-        /// </summary>
-        private List<Food> FCatchFoodList;
-        /// <summary>
-        /// リストが機能しているか確かめるリストボックス（確認用）
-        /// </summary>
-        private ListBox FListBox;
         /// <summary>
         /// 具材の幅の当たり判定調整
         /// </summary>
@@ -70,30 +39,71 @@ namespace HamburgerGame {
         private int FSomeValueY = 10;
 
         /// <summary>
-        /// 具材の画像名
+        /// 移動中の具材のリスト
         /// </summary>
-        private string FBun_TopResourceName = "bun_top";
-        private string FCheeseResourceName = "cheese";
-        private string FPattyResourceName = "patty";
-        private string FLettuceResourceName = "lettuce";
-        private string FTomatoResourceName = "tomato";
+        private readonly List<Food> FMoveFoodList;
+        /// <summary>
+        /// 獲得した具材のリスト
+        /// </summary>
+        private readonly List<Food> FCatchFoodList;
+        /// <summary>
+        /// 乱数生成器
+        /// </summary>
+        private readonly Random FRandom;
+        /// <summary>
+        /// ゲーム画面を表すPictureBox
+        /// </summary>
+        private readonly PictureBox FAreaPlay;
+        /// <summary>
+        /// 獲得した具材の名前を表示するListBox（確認用）
+        /// </summary>
+        private readonly ListBox FCatchFoodListBox;
+        /// <summary>
+        /// 皿を表すオブジェクト
+        /// </summary>
+        private readonly Plate FPlate;
+        /// <summary>
+        /// ゲームのタイマー
+        /// </summary>
+        private readonly Timer FTimer;
+
+        /// <summary>
+        /// バン上部のリソース名
+        /// </summary>
+        private readonly string FBun_TopResourceName = "bun_top";
+        /// <summary>
+        /// チーズのリソース名
+        /// </summary>
+        private readonly string FCheeseResourceName = "cheese";
+        /// <summary>
+        /// 肉のリソース名
+        /// </summary>
+        private readonly string FPattyResourceName = "patty";
+        /// <summary>
+        /// レタスのリソース名）
+        /// </summary>
+        private readonly string FLettuceResourceName = "lettuce";
+        /// <summary>
+        /// トマトのリソース名
+        /// </summary>
+        private readonly string FTomatoResourceName = "tomato";
 
         /// <summary>
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
         public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
-            FMoveFoodList = new List<Food>();
-            FCatchFoodList = new List<Food>();
-            FRandom = new Random();
-            FAreaPlay = vAreaPlay;
-            FListBox = vKakutoku;
-            FPlate = new Plate(vPlate);
+            this.FMoveFoodList = new List<Food>();
+            this.FCatchFoodList = new List<Food>();
+            this.FRandom = new Random(); // FRandom の初期化
+            this.FAreaPlay = vAreaPlay;
+            this.FCatchFoodListBox = vKakutoku;
+            this.FPlate = new Plate(vPlate);
 
-            FTimer = new Timer();
-            FTimer.Interval = 20;
-            FTimer.Tick += Timer_Tick;
-            FTimer.Start();
+            this.FTimer = new Timer();
+            this.FTimer.Interval = 20;
+            this.FTimer.Tick += Timer_Tick;
+            this.FTimer.Start();
         }
 
         /// <summary>
@@ -103,14 +113,14 @@ namespace HamburgerGame {
             FElapsedTime += FTimer.Interval;
 
             //インターバルごとに具材をリストに追加
-            if (FElapsedTime >= C_NewFoodInterval) {
+            if (FElapsedTime >= C_AddNewFoodInterval) {
                 AddNewFood();
                 FElapsedTime = 0;
             }
 
             //具材を落下させ、Y座標が描画されるPictureBoxのY座標に達した時削除される
             foreach (Food wFood in FMoveFoodList.ToArray()) {
-                wFood.Move(0, C_FallingSpeed);
+                wFood.Move(0, C_FallingFoodSpeed);
 
                 if (wFood.Rectangle.Y > FAreaPlay.Height) {
                     FMoveFoodList.Remove(wFood);
@@ -203,12 +213,12 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {
-            FListBox.Items.Clear();
+            FCatchFoodListBox.Items.Clear();
             foreach (Food wFood in FCatchFoodList) {
                 // 具材のリソース名を取得し、リストボックスに追加する
                 string wResourceName = Path.GetFileNameWithoutExtension(wFood.FoodImage.Tag.ToString());
                 // リソース名は通常小文字で指定される為小文字に
-                FListBox.Items.Add(wResourceName.ToLower()); 
+                FCatchFoodListBox.Items.Add(wResourceName.ToLower());
             }
         }
 
