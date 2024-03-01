@@ -2,7 +2,9 @@
 using System.Windows.Forms;
 
 namespace HamburgerGame {
-    //皿クラス
+    /// <summary>
+    /// 皿クラス
+    /// </summary>
     public class Plate {
         /// <summary>
         /// 皿の移動速度

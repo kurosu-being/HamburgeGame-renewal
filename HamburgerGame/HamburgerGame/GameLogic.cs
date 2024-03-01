@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
-    //ゲームロジックのクラス
+    /// <summary>
+    /// ゲームロジックのクラス
+    /// </summary>
     public class GameLogic {
         /// <summary>
         /// 具材の幅

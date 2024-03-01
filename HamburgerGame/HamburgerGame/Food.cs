@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
 
 namespace HamburgerGame {
-    // 具材クラス
+    /// <summary>
+    /// 具材クラス
+    /// </summary>
     public class Food {
         /// <summary>
         /// 具材の長方形の色
