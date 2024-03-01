@@ -3,6 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
+    /// <summary>
+    /// ゲームプレイのクラス
+    /// </summary>
     public partial class HamburgerGAME : Form {
         /// <summary>
         ///  GameLogicクラスのインスタンス
