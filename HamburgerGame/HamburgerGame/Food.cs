@@ -18,10 +18,6 @@ namespace HamburgerGame {
         /// 具材の画像
         /// </summary>
         public Image FoodImage { get; private set; }
-        /// <summary>
-        /// 具材の画像パス
-        /// </summary>
-        public string ImageName { get; private set; }
 
         /// <summary>
         /// フードのコンストラクタ
