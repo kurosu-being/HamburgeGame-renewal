@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -69,13 +70,13 @@ namespace HamburgerGame {
         private int FSomeValueY = 10;
 
         /// <summary>
-        /// 画像パス
+        /// 具材の画像名
         /// </summary>
-        private string FBun_TopPath = @"..\..\Image\bun_top.png";
-        private string FCheesePath = @"..\..\Image\cheese.png";
-        private string FPattyPath = @"..\..\Image\patty.png";
-        private string FLettucePath = @"..\..\Image\lettuce.png";
-        private string FTomatoPath = @"..\..\Image\tomato.png";
+        private string FBun_TopResourceName = "bun_top";
+        private string FCheeseResourceName = "cheese";
+        private string FPattyResourceName = "patty";
+        private string FLettuceResourceName = "lettuce";
+        private string FTomatoResourceName = "tomato";
 
         /// <summary>
         /// ゲームロジックのコンストラクタ
@@ -129,9 +130,9 @@ namespace HamburgerGame {
         private void AddNewFood() {
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
-            string[] wImagePaths = { FBun_TopPath, FCheesePath, FPattyPath, FLettucePath, FTomatoPath };
-            string wRandomImagePath = wImagePaths[FRandom.Next(wImagePaths.Length)];
-            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomImagePath);
+            string[] wResourceNames = { FBun_TopResourceName, FCheeseResourceName, FPattyResourceName, FLettuceResourceName, FTomatoResourceName };
+            string wRandomResourceName = wResourceNames[FRandom.Next(wResourceNames.Length)];
+            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomResourceName);
             FMoveFoodList.Add(wNewFood);
         }
 
@@ -204,7 +205,10 @@ namespace HamburgerGame {
         private void ShowCollisionMessage(Food vFood) {
             FListBox.Items.Clear();
             foreach (Food wFood in FCatchFoodList) {
-                FListBox.Items.Add(wFood.ImagePath);
+                // 具材のリソース名を取得し、リストボックスに追加する
+                string wResourceName = Path.GetFileNameWithoutExtension(wFood.FoodImage.Tag.ToString());
+                // リソース名は通常小文字で指定される為小文字に
+                FListBox.Items.Add(wResourceName.ToLower()); 
             }
         }
 
