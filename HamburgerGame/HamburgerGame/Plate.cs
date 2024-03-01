@@ -13,7 +13,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 皿のPictureBox
         /// </summary>
-        public PictureBox PlatePictureBox { get; private set; }
+        public PictureBox PlatePictureBox { get; }
 
         /// <summary>
         /// 皿のコンストラクタ
