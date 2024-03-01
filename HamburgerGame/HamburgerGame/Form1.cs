@@ -13,8 +13,9 @@ namespace HamburgerGame {
             InitializeComponent();
             InitializeGame();
 
+            // キー入力をフォームが優先的に受け取るようにする
+            KeyPreview = true; 
             // フォームのKeyDownイベントにイベントハンドラを関連付ける
-            KeyPreview = true; // キー入力をフォームが優先的に受け取るようにする
             KeyDown += HamburgerGAME_KeyDown;
         }
 
@@ -27,7 +28,9 @@ namespace HamburgerGame {
             FGameLogic.AreaPlay_Load(null);
         }
 
-        // キー入力を受け取り、皿を移動させる
+        /// <summary>
+        /// キー入力を受け取り、皿を移動させる
+        /// </summary>
         private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
             FGameLogic.ProcessKeyPress(e.KeyCode, Area_Play.Width);
         }
