@@ -60,7 +60,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 具材の幅の当たり判定調整
         /// </summary>
-        private int FSomeValueX = 30;
+        private int FSomeValueX = 15;
         /// <summary>
         /// 具材の高さの当たり判定調整
         /// </summary>
