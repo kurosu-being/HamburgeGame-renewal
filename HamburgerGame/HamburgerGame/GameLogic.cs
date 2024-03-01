@@ -115,7 +115,7 @@ namespace HamburgerGame {
             }
 
             // 当たり判定を実行
-            CheckCollisions();
+            HandleChecker();
 
             //再描画をマークする
             FAreaPlay.Invalidate();
@@ -159,22 +159,40 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// 具材と皿の当たり判定を行うメソッド
+        /// 当たり判定の処理を実行するメソッド
         /// </summary>
-        private void CheckCollisions() {
+        private void HandleChecker() {
             Rectangle wPlateRect = GetPlateRectangle();
 
             foreach (Food wFood in FMoveFoodList.ToArray()) {
-                // 具材の矩形を調整
-                Rectangle wAdjustmentFoodRect = wFood.Rectangle;
-                wAdjustmentFoodRect.Inflate(-FSomeValueX, -FSomeValueY); 
-
-                if (wAdjustmentFoodRect.IntersectsWith(wPlateRect)) {
-                    FCatchFoodList.Add(wFood);
-                    ShowCollisionMessage(wFood);
-                    FMoveFoodList.Remove(wFood);
+                if (IsCollisions(wFood.Rectangle, wPlateRect)) {
+                    HandleCollision(wFood);
                 }
             }
+        }
+
+        /// <summary>
+        /// 当たり判定のロジックを行うメソッド
+        /// </summary>
+        /// <param name="vFoodRect">具材の長方形</param>
+        /// <param name="vPlateRect">皿の長方形</param>
+        /// <returns></returns>
+        private bool IsCollisions(Rectangle vFoodRect, Rectangle vPlateRect) {
+            // 具材の矩形を調整
+            Rectangle wAdjustmentFoodRect = vFoodRect;
+            wAdjustmentFoodRect.Inflate(-FSomeValueX, -FSomeValueY);
+
+            return wAdjustmentFoodRect.IntersectsWith(vPlateRect);
+        }
+
+        /// <summary>
+        /// 衝突時の処理を行うメソッド
+        /// </summary>
+        /// <param name="vFood">具材</param>
+        private void HandleCollision(Food vFood) {
+            FCatchFoodList.Add(vFood);
+            ShowCollisionMessage(vFood);
+            FMoveFoodList.Remove(vFood);
         }
 
         /// <summary>
