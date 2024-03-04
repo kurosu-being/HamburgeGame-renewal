@@ -95,7 +95,7 @@ namespace HamburgerGame {
         public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
             this.FMoveFoodList = new List<Food>();
             this.FCatchFoodList = new List<Food>();
-            this.FRandom = new Random(); // FRandom の初期化
+            this.FRandom = new Random(); 
             this.FAreaPlay = vAreaPlay;
             this.FCatchFoodListBox = vKakutoku;
             this.FPlate = new Plate(vPlate);
@@ -130,7 +130,7 @@ namespace HamburgerGame {
             // 当たり判定を実行
             HandleChecker();
 
-            //再描画をマークする
+            //コントロールの表面全体を無効化し、再描画をマークする
             FAreaPlay.Invalidate();
         }
 
@@ -149,7 +149,7 @@ namespace HamburgerGame {
         /// <summary>
         /// FMoveListの具材を描画するメソッド
         /// </summary>
-        public void AreaPlay_Paint(object sender, PaintEventArgs e) {
+        public void DrawAreaPlay(object sender, PaintEventArgs e) {
             foreach (Food wFood in FMoveFoodList.ToArray()) {
                 wFood.Draw(e.Graphics);
             }
@@ -158,9 +158,9 @@ namespace HamburgerGame {
         /// <summary>
         ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
-        /// <param name="e"></param>
-        public void AreaPlay_Load(EventArgs e) {
-            FAreaPlay.Paint += AreaPlay_Paint;
+        public void InitializeGameScreen() {
+            FAreaPlay.Paint += DrawAreaPlay;
+            //最初の具材を追加する
             AddNewFood();
         }
 
@@ -209,7 +209,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// リストボックスに獲得した具材のパスを追加するメソッド（確認用）
+        /// リストボックスに獲得した具材の名前を追加するメソッド（確認用）
         /// </summary>
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {

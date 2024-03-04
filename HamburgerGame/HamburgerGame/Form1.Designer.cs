@@ -99,7 +99,6 @@
             this.MinimizeBox = false;
             this.Name = "HamburgerGAME";
             this.Text = "ハンバーガーゲーム";
-            this.Load += new System.EventHandler(this.HamburgerGAME_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Plate)).EndInit();

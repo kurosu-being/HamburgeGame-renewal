@@ -28,7 +28,7 @@ namespace HamburgerGame {
         /// </summary>
         private void InitializeGame() {
             FGameLogic = new GameLogic(Area_Play, Plate, listBox1);
-            FGameLogic.AreaPlay_Load(null);
+            FGameLogic.InitializeGameScreen();
         }
 
         /// <summary>
@@ -36,9 +36,6 @@ namespace HamburgerGame {
         /// </summary>
         private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
             FGameLogic.ProcessKeyPress(e.KeyCode, Area_Play.Width);
-        }
-
-        private void HamburgerGAME_Load_1(object sender, EventArgs e) {
         }
     }
 }
