@@ -144,6 +144,7 @@ namespace HamburgerGame {
             string[] wResourceNames = { FBun_TopResourceName, FCheeseResourceName, FPattyResourceName, FLettuceResourceName, FTomatoResourceName };
             string wRandomResourceName = wResourceNames[FRandom.Next(wResourceNames.Length)];
             var wNewFoodImage = Properties.Resources.ResourceManager.GetObject(wRandomResourceName) as Image;
+            // TODO: 画像名をListBoxに表示させる為、Tagに名前を割り当てる（名前を表示させるのに必要）
             wNewFoodImage.Tag = wRandomResourceName; 
             var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wNewFoodImage);
             FMoveFoodList.Add(wNewFood);

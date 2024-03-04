@@ -51,11 +51,5 @@ namespace HamburgerGame {
         public void Draw(Graphics g) {
             g.DrawImage(FoodImage, Rectangle);
         }
-
-        private string GetResourceNameFromImage(Image image) {
-            string wImageName = image.Tag.ToString(); // 画像の名前を取得
-            string wResourceName = Path.GetFileNameWithoutExtension(wImageName); // 拡張子を取り除いた名前をリソース名とする
-            return wResourceName;
-        }
     }
 }
