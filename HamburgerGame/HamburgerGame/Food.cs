@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace HamburgerGame {
     /// <summary>
@@ -26,13 +27,15 @@ namespace HamburgerGame {
         /// <param name="vPositionY">Y座標</param>
         /// <param name="vWidth">幅</param>
         /// <param name="vHeight">高さ</param>
-        public Food(int vX, int vY, int vWidth, int vHeight, string vResourceName) {
+        public Food(int vX, int vY, int vWidth, int vHeight, Image vFoodImage) {
             this.Rectangle = new Rectangle(vX, vY, vWidth, vHeight);
-            this.FoodImage = Properties.Resources.ResourceManager.GetObject(vResourceName) as Image;
-            if (FoodImage == null) {
-                throw new ArgumentException("リソースの名前と一致するものがみつかりませんでした。リソースファイルの画像名とコードの具材の画像名が一致しているか確認してください。");
+            this.FoodImage = vFoodImage;
+            if (FoodImage == null || FoodImage.Tag == null) {
+                throw new ArgumentException("画像または画像のタグが指定されていません。");
             }
-            this.FoodImage.Tag = vResourceName;
+
+            string wResourceName = Path.GetFileNameWithoutExtension(vFoodImage.Tag.ToString());
+            this.FoodImage.Tag = wResourceName;
         }
 
         /// <summary>
@@ -47,6 +50,12 @@ namespace HamburgerGame {
         /// </summary>
         public void Draw(Graphics g) {
             g.DrawImage(FoodImage, Rectangle);
+        }
+
+        private string GetResourceNameFromImage(Image image) {
+            string wImageName = image.Tag.ToString(); // 画像の名前を取得
+            string wResourceName = Path.GetFileNameWithoutExtension(wImageName); // 拡張子を取り除いた名前をリソース名とする
+            return wResourceName;
         }
     }
 }

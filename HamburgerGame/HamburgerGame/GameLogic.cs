@@ -140,9 +140,12 @@ namespace HamburgerGame {
         private void AddNewFood() {
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
+
             string[] wResourceNames = { FBun_TopResourceName, FCheeseResourceName, FPattyResourceName, FLettuceResourceName, FTomatoResourceName };
             string wRandomResourceName = wResourceNames[FRandom.Next(wResourceNames.Length)];
-            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomResourceName);
+            var wNewFoodImage = Properties.Resources.ResourceManager.GetObject(wRandomResourceName) as Image;
+            wNewFoodImage.Tag = wRandomResourceName; 
+            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wNewFoodImage);
             FMoveFoodList.Add(wNewFood);
         }
 
