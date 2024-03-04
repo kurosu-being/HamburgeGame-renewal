@@ -208,7 +208,6 @@ namespace HamburgerGame {
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
             FCatchFoodList.Add(vFood);
-            ShowCollisionMessage(vFood);
             FMoveFoodList.Remove(vFood);
         }
 
