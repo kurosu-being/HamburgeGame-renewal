@@ -37,6 +37,7 @@
             // Area_Play
             // 
             this.Area_Play.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.Area_Play.BackColor = System.Drawing.Color.White;
             this.Area_Play.Location = new System.Drawing.Point(-3, 1);
             this.Area_Play.Name = "Area_Play";
             this.Area_Play.Size = new System.Drawing.Size(703, 560);
@@ -57,7 +58,8 @@
             // 
             // Plate
             // 
-            this.Plate.BackColor = System.Drawing.Color.White;
+
+            this.Plate.BackColor = System.Drawing.Color.Transparent;
             this.Plate.Image = global::HamburgerGame.Properties.Resources.dish;
             this.Plate.Location = new System.Drawing.Point(293, 499);
             this.Plate.Name = "Plate";

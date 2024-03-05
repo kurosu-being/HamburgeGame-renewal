@@ -22,7 +22,6 @@ namespace HamburgerGame {
             KeyDown += HamburgerGAME_KeyDown;
         }
 
-
         /// <summary>
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
@@ -36,6 +35,8 @@ namespace HamburgerGame {
         /// </summary>
         private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
             FGameLogic.ProcessKeyPress(e.KeyCode, Area_Play.Width);
+        }
+        private void HamburgerGAME_Load_1(object sender, EventArgs e) {
         }
     }
 }
