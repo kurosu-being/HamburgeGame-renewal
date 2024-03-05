@@ -37,6 +37,10 @@ namespace HamburgerGame {
         /// 具材の高さの当たり判定調整
         /// </summary>
         private int FSomeValueY = 10;
+        /// <summary>
+        /// 終了か否かのフラグ
+        /// </summary>
+        public bool FEndFlag;
 
         /// <summary>
         /// 移動中の具材のリスト
@@ -55,7 +59,7 @@ namespace HamburgerGame {
         /// </summary>
         private readonly PictureBox FAreaPlay;
         /// <summary>
-        /// 獲得した具材の名前を表示するListBox（確認用）
+        /// TODO: 獲得した具材の名前を表示するListBoxなのであとで削除する
         /// </summary>
         private readonly ListBox FCatchFoodListBox;
         /// <summary>
@@ -67,26 +71,6 @@ namespace HamburgerGame {
         /// </summary>
         private readonly Timer FTimer;
 
-        /// <summary>
-        /// バン上部のリソース名
-        /// </summary>
-        private readonly string FBun_TopResourceName = "bun_top";
-        /// <summary>
-        /// チーズのリソース名
-        /// </summary>
-        private readonly string FCheeseResourceName = "cheese";
-        /// <summary>
-        /// 肉のリソース名
-        /// </summary>
-        private readonly string FPattyResourceName = "patty";
-        /// <summary>
-        /// レタスのリソース名）
-        /// </summary>
-        private readonly string FLettuceResourceName = "lettuce";
-        /// <summary>
-        /// トマトのリソース名
-        /// </summary>
-        private readonly string FTomatoResourceName = "tomato";
 
         /// <summary>
         /// ゲームロジックのコンストラクタ
@@ -135,19 +119,27 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// 新しい具材を画面外のランダムな位置に設定し、リストに追加するメソッド
+        /// 新しい具材を移動する具材のリストに追加するメソッド
         /// </summary>
         private void AddNewFood() {
+            Food wNewFood = CreateRandomFood();
+            FMoveFoodList.Add(wNewFood); 
+        }
+
+        /// <summary>
+        /// ランダムな具材の画像を上部ランダムな位置に生成するメソッド
+        /// </summary>
+        /// <returns>生成された具材の画像</returns>
+        private Food CreateRandomFood() {
+            int wRandomIndex = FRandom.Next(Food.FImages.Length);
+            Image wRandomImage = Food.FImages[wRandomIndex];
+            string wName = Food.FResourceNames[wRandomIndex]; 
+
+            //画面上部の新しい位置に配置
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
 
-            string[] wResourceNames = { FBun_TopResourceName, FCheeseResourceName, FPattyResourceName, FLettuceResourceName, FTomatoResourceName };
-            string wRandomResourceName = wResourceNames[FRandom.Next(wResourceNames.Length)];
-            var wNewFoodImage = Properties.Resources.ResourceManager.GetObject(wRandomResourceName) as Image;
-            // TODO: 画像名をListBoxに表示させる為、Tagに名前を割り当てる（名前を表示させるのに必要）
-            wNewFoodImage.Tag = wRandomResourceName; 
-            var wNewFood = new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wNewFoodImage);
-            FMoveFoodList.Add(wNewFood);
+            return new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomImage, wRandomIndex);
         }
 
         /// <summary>
@@ -171,6 +163,7 @@ namespace HamburgerGame {
         /// <summary>
         /// Plateの位置情報を取得するためのメソッド
         /// </summary>
+        /// <returns>Plateの位置情報</returns>
         private Rectangle GetPlateRectangle() {
             return FPlate.PlatePictureBox.Bounds;
         }
@@ -193,7 +186,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vFoodRect">具材の長方形</param>
         /// <param name="vPlateRect">皿の長方形</param>
-        /// <returns></returns>
+        /// <returns>当たり判定が真か偽か</returns>
         private bool IsCollisions(Rectangle vFoodRect, Rectangle vPlateRect) {
             // 具材の矩形を調整
             Rectangle wAdjustmentFoodRect = vFoodRect;
@@ -208,21 +201,19 @@ namespace HamburgerGame {
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
             FCatchFoodList.Add(vFood);
+            ShowCollisionMessage(vFood);
             FMoveFoodList.Remove(vFood);
         }
 
         /// <summary>
-        /// リストボックスに獲得した具材の名前を追加するメソッド（確認用）
+        /// TODO: リストボックスに獲得した具材の名前を追加するメソッドなので削除する
         /// </summary>
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {
-            FCatchFoodListBox.Items.Clear();
-            foreach (Food wFood in FCatchFoodList) {
                 // 具材のリソース名を取得し、リストボックスに追加する
-                string wResourceName = Path.GetFileNameWithoutExtension(wFood.FoodImage.Tag.ToString());
+                string wResourceName = vFood.FFoodName;
                 // リソース名は通常小文字で指定される為小文字に
                 FCatchFoodListBox.Items.Add(wResourceName.ToLower());
-            }
         }
 
         /// <summary>
