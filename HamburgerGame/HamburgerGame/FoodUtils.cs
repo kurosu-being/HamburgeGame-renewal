@@ -20,7 +20,7 @@ namespace HamburgerGame {
         /// <summary>
         /// FoodInfoの全アイテムを取得するメソッド
         /// </summary>
-        /// <returns></returns>
+        /// <returns>FoodInfoの全アイテム</returns>
         public static List<FoodInfo> GetFoodInfoList() {
             return FFoodInfoList;
         }
@@ -28,7 +28,7 @@ namespace HamburgerGame {
         /// <summary>
         /// FoodInfoのランダムなアイテムを取得するメソッド
         /// </summary>
-        /// <returns></returns>
+        /// <returns>FoodInfoのランダムなアイテム</returns>
         public static FoodInfo GetRandomFoodInfo() {
             // ランダムなインデックスを取得
             int wIndex = new Random().Next(FFoodInfoList.Count);
