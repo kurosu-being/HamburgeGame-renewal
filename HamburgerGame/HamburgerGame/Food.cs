@@ -17,7 +17,7 @@ namespace HamburgerGame {
         /// <summary>
         /// FoodInfoのインスタンス
         /// </summary>
-        public FoodInfo FFoodInfo;
+        public FoodInfo FFoodInfo { get; }
 
         /// <summary>
         /// フードのコンストラクタ
