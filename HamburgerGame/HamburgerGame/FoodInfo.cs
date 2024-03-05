@@ -10,20 +10,11 @@ namespace HamburgerGame {
         /// <summary>
         /// 具材の名前
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
         /// <summary>
         /// 具材の画像
         /// </summary>
-        public Image Image { get; set; }
-        /// <summary>
-        /// 具材の情報のコンストラクタ
-        /// </summary>
-        /// <param name="vName"></param>
-        /// <param name="vImage"></param>
-        public FoodInfo(string vName, Image vImage) {
-            this.Name = vName;
-            this.Image = vImage;            
-        }
+        public Image Image { get; }
 
         /// <summary>
         /// 具材の画像と名前を管理するオブジェクトのリスト
@@ -35,5 +26,15 @@ namespace HamburgerGame {
             new FoodInfo("lettuce", Properties.Resources.lettuce),
             new FoodInfo("tomato", Properties.Resources.tomato)
         };
+
+        /// <summary>
+        /// 具材の情報のコンストラクタ
+        /// </summary>
+        /// <param name="vName">具材の名前</param>
+        /// <param name="vImage">具材のImage画像</param>
+        public FoodInfo(string vName, Image vImage) {
+            this.Name = vName;
+            this.Image = vImage;            
+        }
     }
 }

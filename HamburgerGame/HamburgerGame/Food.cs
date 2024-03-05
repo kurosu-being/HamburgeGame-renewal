@@ -19,8 +19,10 @@ namespace HamburgerGame {
         /// <summary>
         /// 具材の画像
         /// </summary>
-        public Image FoodImage { get; private set; }
-        // 具材の名前
+        public Image FFoodImage { get; private set; }
+        /// <summary>
+        /// 具材の名前
+        /// </summary>
         public string FFoodName { get; private set; }
 
         /// <summary>
@@ -34,9 +36,8 @@ namespace HamburgerGame {
         /// <param name="vFoodType">具材の種類</param>
         public Food(int vPositionX, int vPositionY, int vWidth, int vHeight, FoodInfo vFoodInfo) {
             this.Rectangle = new Rectangle(vPositionX, vPositionY, vWidth, vHeight);
-            this.FoodImage = vFoodInfo.Image;
 
-            this.FoodImage = vFoodInfo.Image;
+            this.FFoodImage = vFoodInfo.Image;
             this.FFoodName = vFoodInfo.Name;
         }
 
@@ -51,7 +52,7 @@ namespace HamburgerGame {
         /// 具材を描画するメソッド
         /// </summary>
         public void Draw(Graphics g) {
-            g.DrawImage(FoodImage, Rectangle);
+            g.DrawImage(FFoodImage, Rectangle);
         }
     }
 }
