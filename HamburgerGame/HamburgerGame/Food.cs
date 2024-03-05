@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
@@ -19,31 +20,8 @@ namespace HamburgerGame {
         /// 具材の画像
         /// </summary>
         public Image FoodImage { get; private set; }
-        /// <summary>
-        /// 具材の名前
-        /// </summary>
-        public string FFoodName { get; private set;}
-
-        /// <summary>
-        /// 具材の画像
-        /// </summary>
-        public static readonly Image[] FImages = {
-            Properties.Resources.bun_top, //パン上部
-            Properties.Resources.cheese,  //チーズ  
-            Properties.Resources.patty,   //肉      
-            Properties.Resources.lettuce, //レタス  
-            Properties.Resources.tomato   //トマト
-        };
-        /// <summary>
-        /// 具材の画像名
-        /// </summary>
-        public static readonly string[] FResourceNames = {
-            "bun_top", //パン上部           
-            "cheese",  //チーズ          
-            "patty",   //肉      
-            "lettuce", //レタス     
-            "tomato"   //トマト
-        };
+        // 具材の名前
+        public string FFoodName { get; private set; }
 
         /// <summary>
         /// フードのコンストラクタ
@@ -54,12 +32,12 @@ namespace HamburgerGame {
         /// <param name="vHeight">具材の高さ</param>
         /// <param name="vFoodImage">具材のImage画像</param>
         /// <param name="vFoodType">具材の種類</param>
-        public Food(int vPositionX, int vPositionY, int vWidth, int vHeight, Image vFoodImage, int vFoodType) {
+        public Food(int vPositionX, int vPositionY, int vWidth, int vHeight, FoodInfo vFoodInfo) {
             this.Rectangle = new Rectangle(vPositionX, vPositionY, vWidth, vHeight);
-            this.FoodImage = vFoodImage;
+            this.FoodImage = vFoodInfo.Image;
 
-            this.FoodImage = FImages[vFoodType];
-            this.FFoodName = FResourceNames[vFoodType];
+            this.FoodImage = vFoodInfo.Image;
+            this.FFoodName = vFoodInfo.Name;
         }
 
         /// <summary>

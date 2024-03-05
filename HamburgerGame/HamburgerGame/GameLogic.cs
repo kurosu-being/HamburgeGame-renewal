@@ -131,15 +131,14 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>生成された具材の画像</returns>
         private Food CreateRandomFood() {
-            int wRandomIndex = FRandom.Next(Food.FImages.Length);
-            Image wRandomImage = Food.FImages[wRandomIndex];
-            string wName = Food.FResourceNames[wRandomIndex]; 
+            int wRandomIndex = FRandom.Next(FoodInfo.FFoodInfoList.Count);
+            FoodInfo wFoodInfo = FoodInfo.FFoodInfoList[wRandomIndex];
 
             //画面上部の新しい位置に配置
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
 
-            return new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRandomImage, wRandomIndex);
+            return new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wFoodInfo);
         }
 
         /// <summary>
