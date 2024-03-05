@@ -70,7 +70,6 @@ namespace HamburgerGame {
         /// </summary>
         private readonly Timer FTimer;
 
-
         /// <summary>
         /// ゲームロジックのコンストラクタ
         /// </summary>
@@ -130,8 +129,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>生成された具材の画像</returns>
         private Food CreateRandomFood() {
-            int wRandomIndex = FRandom.Next(FoodInfo.FFoodInfoList.Count);
-            FoodInfo wRamdomFoodInfo = FoodInfo.FFoodInfoList[wRandomIndex];
+            var wRamdomFoodInfo = FoodUtils.GetRandomFoodInfo();
 
             //画面上部の新しい位置に配置
             int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
@@ -209,7 +207,7 @@ namespace HamburgerGame {
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {
             // 具材のリソース名を取得し、リストボックスに追加する
-            string wResourceName = vFood.FFoodName;
+            string wResourceName = vFood.FFoodInfo.Name;
             // リソース名は通常小文字で指定される為小文字に
             FCatchFoodListBox.Items.Add(wResourceName.ToLower());
         }
