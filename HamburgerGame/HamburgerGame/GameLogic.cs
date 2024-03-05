@@ -50,10 +50,6 @@ namespace HamburgerGame {
         /// </summary>
         private readonly List<Food> FCatchFoodList;
         /// <summary>
-        /// 乱数生成器
-        /// </summary>
-        private readonly Random FRandom;
-        /// <summary>
         /// ゲーム画面を表すPictureBox
         /// </summary>
         private readonly PictureBox FAreaPlay;
@@ -77,7 +73,6 @@ namespace HamburgerGame {
         public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
             this.FMoveFoodList = new List<Food>();
             this.FCatchFoodList = new List<Food>();
-            this.FRandom = new Random();
             this.FAreaPlay = vAreaPlay;
             this.FCatchFoodListBox = vKakutoku;
             this.FPlate = new Plate(vPlate);
@@ -132,7 +127,8 @@ namespace HamburgerGame {
             var wRamdomFoodInfo = FoodUtils.GetRandomFoodInfo();
 
             //画面上部の新しい位置に配置
-            int wNewX = FRandom.Next(0, FAreaPlay.Width - C_FoodWidth);
+            var wRamdom = new Random();
+            int wNewX = wRamdom.Next(0, FAreaPlay.Width - C_FoodWidth);
             int wNewY = -C_FoodHeight;
 
             return new Food(wNewX, wNewY, C_FoodWidth, C_FoodHeight, wRamdomFoodInfo);
