@@ -39,7 +39,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 終了か否かのフラグ
         /// </summary>
-        public bool FEndFlag;
+        public bool FEndFlag　= false;
 
         /// <summary>
         /// 移動中の具材のリスト
@@ -193,20 +193,42 @@ namespace HamburgerGame {
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
             FCatchFoodList.Add(vFood);
-            ShowCollisionMessage(vFood);
+            //終了判定を実行
+            JudgeEndGetBunTop(vFood);
+            JudgeEndGetFiveFood();           
+            if (FEndFlag) {
+                //TODO: 終了判定trueの時の処理なのであとで消す
+                FCatchFoodListBox.Items.Add("終了判定".ToLower());
+                foreach (var wList in FCatchFoodList) {
+                    FCatchFoodListBox.Items.Add(wList.FFoodInfo.Name);
+                }
+            }
             FMoveFoodList.Remove(vFood);
         }
 
         /// <summary>
-        /// TODO: リストボックスに獲得した具材の名前を追加するメソッドなので削除する
+        /// 終了判定：具材を5個獲得したら終了判定フラグをtrueにするメソッド
         /// </summary>
-        /// <param name="food">衝突した具材</param>
-        private void ShowCollisionMessage(Food vFood) {
-            // 具材のリソース名を取得し、リストボックスに追加する
-            string wResourceName = vFood.FFoodInfo.Name;
-            // リソース名は通常小文字で指定される為小文字に
-            FCatchFoodListBox.Items.Add(wResourceName.ToLower());
+        /// <returns>終了したか否かのフラグ</returns>
+        private bool JudgeEndGetFiveFood() {
+            if (FCatchFoodList.Count == 5) {
+                FEndFlag = true;
+            }
+            return FEndFlag;
         }
+
+        /// <summary>
+        /// 終了判定：パン上部を獲得したら終了判定フラグをtrueにするメソッド
+        /// </summary>
+        /// <param name="vFood"></param>
+        /// <returns>終了したか否かのフラグ</returns>
+        private bool JudgeEndGetBunTop(Food vFood) {
+            if (vFood.FFoodInfo.Name == "bun_top") {
+                FEndFlag = true;
+            }
+            return FEndFlag;
+        }
+
 
         /// <summary>
         /// キー入力を受け取り、皿を移動させるメソッド
