@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HamburgerGame {
-      public class FoodInfo {
+    public class FoodInfo {
         /// <summary>
         /// 具材の名前
         /// </summary>
@@ -34,7 +30,7 @@ namespace HamburgerGame {
         /// <param name="vImage">具材のImage画像</param>
         public FoodInfo(string vName, Image vImage) {
             this.Name = vName;
-            this.Image = vImage;            
+            this.Image = vImage;
         }
     }
 }

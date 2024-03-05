@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -79,7 +78,7 @@ namespace HamburgerGame {
         public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
             this.FMoveFoodList = new List<Food>();
             this.FCatchFoodList = new List<Food>();
-            this.FRandom = new Random(); 
+            this.FRandom = new Random();
             this.FAreaPlay = vAreaPlay;
             this.FCatchFoodListBox = vKakutoku;
             this.FPlate = new Plate(vPlate);
@@ -123,7 +122,7 @@ namespace HamburgerGame {
         /// </summary>
         private void AddNewFood() {
             Food wNewFood = CreateRandomFood();
-            FMoveFoodList.Add(wNewFood); 
+            FMoveFoodList.Add(wNewFood);
         }
 
         /// <summary>
@@ -209,10 +208,10 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="food">衝突した具材</param>
         private void ShowCollisionMessage(Food vFood) {
-                // 具材のリソース名を取得し、リストボックスに追加する
-                string wResourceName = vFood.FFoodName;
-                // リソース名は通常小文字で指定される為小文字に
-                FCatchFoodListBox.Items.Add(wResourceName.ToLower());
+            // 具材のリソース名を取得し、リストボックスに追加する
+            string wResourceName = vFood.FFoodName;
+            // リソース名は通常小文字で指定される為小文字に
+            FCatchFoodListBox.Items.Add(wResourceName.ToLower());
         }
 
         /// <summary>
