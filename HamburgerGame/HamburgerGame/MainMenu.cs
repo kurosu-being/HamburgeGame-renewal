@@ -17,8 +17,7 @@ namespace HamburgerGame {
         /// <param name="e">イベント データを格納している EventArgs</param>
         private void Label_Click(object vSender, EventArgs e) {
             // ゲーム画面のインスタンスを作成
-            HamburgerGAME wForm1 = new HamburgerGAME();
-
+            var wForm1 = new HamburgerGAME();
             // ゲーム画面を表示
             wForm1.Show();
 
@@ -36,7 +35,7 @@ namespace HamburgerGame {
             // ラベルを透明色に設定  
             this.Label.BackColor = Color.Transparent;
 
-            // ラベルがピクチャーボックスの中央に来るように設定（おまけ）  
+            // ラベルがピクチャーボックスの中央に来るように設定
             this.Label.Top = (this.pictureBox1.Height - this.Label.Height);
             this.Label.Left = (this.pictureBox1.Width - this.Label.Width) / 2;
         }
