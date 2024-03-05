@@ -14,25 +14,25 @@ namespace HamburgerGame {
             InitializeComponent();
         }
 
-        private void Form1_KeyDown(object vSender, KeyEventArgs e) {
+        private void ResultScreen_KeyDown(object vSender, KeyEventArgs e) {
             // Yキーが押された場合
             if (e.KeyCode == Keys.Y) {
-                // 続ける処理を行う
-                MessageBox.Show("続けます");
+                // MainMenuフォームを作成
+                //var wMainMenuForm = new MainMenu();
+                var wHamburgerGAME = new HamburgerGAME();
+                // MainMenuフォームを表示
+                //wMainMenuForm.Show();
+                wHamburgerGAME.Show();
+
+                // 現在のフォームを非表示にする
+                this.Hide();
             }
-            // Nキーが押された場合+
+            // Nキーが押された場合
             else if (e.KeyCode == Keys.N) {
                 // 画面を閉じる
                 this.Close();
             }
         }
-
-
-
-
-
-        private void label2_Click(object sender, EventArgs e) {
-
-        }
     }
 }
+
