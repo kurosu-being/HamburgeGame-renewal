@@ -197,11 +197,8 @@ namespace HamburgerGame {
             JudgeEndGetBunTop(vFood);
             JudgeEndGetFiveFood();           
             if (FEndFlag) {
-                //TODO: 終了判定trueの時の処理なのであとで消す
+                //TODO: 終了判定trueの時の処理、ここでは仮にListBoxに文字を表示
                 FCatchFoodListBox.Items.Add("終了判定".ToLower());
-                foreach (var wList in FCatchFoodList) {
-                    FCatchFoodListBox.Items.Add(wList.FFoodInfo.Name);
-                }
             }
             FMoveFoodList.Remove(vFood);
         }
