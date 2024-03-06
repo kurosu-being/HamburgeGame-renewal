@@ -25,6 +25,11 @@ namespace HamburgerGame {
         /// </summary>
         private const int C_AddNewFoodInterval = 1200;
         /// <summary>
+        /// 獲得する具材の最大数
+        /// </summary>
+        private const int C_MAXCatchedFoodNumber = 5;
+
+        /// <summary>
         /// 経過時間
         /// </summary>
         private int FElapsedTime = 0;
@@ -37,30 +42,32 @@ namespace HamburgerGame {
         /// </summary>
         private int FSomeValueY = 10;
         /// <summary>
-        /// 終了か否かのフラグ
-        /// </summary>
-        public bool FEndFlag　= false;
-        /// <summary>
         /// 獲得すると終了になる具材の名前
         /// </summary>
         private string FEndFoodName = "bun_top";
+        /// <summary>
+        /// 終了か否かのフラグ
+        /// </summary>
+        private bool FEndFlag = false;
 
+
+        /// <summary>
+        /// ゲーム画面のフォーム
+        /// </summary>
+        private Form FParentForm { get; }
+
+        /// <summary>
+        /// 獲得した具材のリスト
+        /// </summary>
+        public readonly List<Food> FCatchFoodList;
         /// <summary>
         /// 移動中の具材のリスト
         /// </summary>
         private readonly List<Food> FMoveFoodList;
         /// <summary>
-        /// 獲得した具材のリスト
-        /// </summary>
-        private readonly List<Food> FCatchFoodList;
-        /// <summary>
         /// ゲーム画面を表すPictureBox
         /// </summary>
         private readonly PictureBox FAreaPlay;
-        /// <summary>
-        /// TODO: 獲得した具材の名前を表示するListBoxなのであとで削除する
-        /// </summary>
-        private readonly ListBox FCatchFoodListBox;
         /// <summary>
         /// 皿を表すオブジェクト
         /// </summary>
@@ -74,12 +81,12 @@ namespace HamburgerGame {
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
-        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
+        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, Form vParentForm) {
             this.FMoveFoodList = new List<Food>();
             this.FCatchFoodList = new List<Food>();
             this.FAreaPlay = vAreaPlay;
-            this.FCatchFoodListBox = vKakutoku;
             this.FPlate = new Plate(vPlate);
+            this.FParentForm = vParentForm;
 
             this.FTimer = new Timer();
             this.FTimer.Interval = 20;
@@ -109,10 +116,21 @@ namespace HamburgerGame {
             }
 
             // 当たり判定を実行
-            HandleChecker();
+            ProcessCollisions();
 
             //コントロールの表面全体を無効化し、再描画をマークする
             FAreaPlay.Invalidate();
+
+            // 終了判定後
+            if (FEndFlag) {
+                FTimer.Stop();
+                //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
+                var wMainMenu = new MainMenu();
+                //TODO:MainMenuに遷移、終了画面を表示に差し替える
+                wMainMenu.Show();
+
+                FParentForm.Close();
+            }
         }
 
         /// <summary>
@@ -167,7 +185,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 当たり判定の処理を実行するメソッド
         /// </summary>
-        private void HandleChecker() {
+        private void ProcessCollisions() {
             Rectangle wPlateRect = GetPlateRectangle();
 
             foreach (Food wFood in FMoveFoodList.ToArray()) {
@@ -197,13 +215,11 @@ namespace HamburgerGame {
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
             FCatchFoodList.Add(vFood);
+
             //終了判定を実行
             JudgeEndGetBunTop(vFood);
-            JudgeEndGetFiveFood();           
-            if (FEndFlag) {
-                //TODO: 終了判定trueの時の処理、ここでは仮にListBoxに文字を表示
-                FCatchFoodListBox.Items.Add("終了判定".ToLower());
-            }
+            JudgeEndGetFiveFood();
+
             FMoveFoodList.Remove(vFood);
         }
 
@@ -212,7 +228,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetFiveFood() {
-            if (FCatchFoodList.Count == 5) {
+            if (FCatchFoodList.Count == C_MAXCatchedFoodNumber) {
                 FEndFlag = true;
             }
             return FEndFlag;
