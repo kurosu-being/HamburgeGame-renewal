@@ -121,7 +121,7 @@ namespace HamburgerGame {
             //コントロールの表面全体を無効化し、再描画をマークする
             FAreaPlay.Invalidate();
 
-            // 終了判定後
+            // 終了判定を実行
             if (FEndFlag) {
                 FTimer.Stop();
                 //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
