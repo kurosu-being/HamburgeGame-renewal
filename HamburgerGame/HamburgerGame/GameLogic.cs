@@ -40,6 +40,10 @@ namespace HamburgerGame {
         /// 終了か否かのフラグ
         /// </summary>
         public bool FEndFlag　= false;
+        /// <summary>
+        /// 獲得すると終了になる具材の名前
+        /// </summary>
+        private string FEndFoodName = "bun_top";
 
         /// <summary>
         /// 移動中の具材のリスト
@@ -220,7 +224,7 @@ namespace HamburgerGame {
         /// <param name="vFood"></param>
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetBunTop(Food vFood) {
-            if (vFood.FFoodInfo.Name == "bun_top") {
+            if (vFood.FFoodInfo.Name == FEndFoodName) {
                 FEndFlag = true;
             }
             return FEndFlag;
