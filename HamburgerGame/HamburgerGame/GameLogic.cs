@@ -159,7 +159,7 @@ namespace HamburgerGame {
         /// <summary>
         /// FMoveListの具材を描画するメソッド
         /// </summary>
-        public void DrawAreaPlay(object sender, PaintEventArgs e) {
+        public void DrawFMoveListFood(object sender, PaintEventArgs e) {
             foreach (Food wFood in FMoveFoodList.ToArray()) {
                 wFood.Draw(e.Graphics);
             }
@@ -169,7 +169,7 @@ namespace HamburgerGame {
         ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
         public void InitializeGameScreen() {
-            FAreaPlay.Paint += DrawAreaPlay;
+            FAreaPlay.Paint += DrawFMoveListFood;
             //最初の具材を追加する
             AddNewFood();
         }
