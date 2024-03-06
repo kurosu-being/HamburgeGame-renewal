@@ -128,7 +128,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>生成された具材の画像</returns>
         private Food CreateRandomFood() {
-            var wRamdomFoodInfo = FoodUtils.GetRandomFoodInfo();
+            FoodInfo wRamdomFoodInfo = FoodUtils.GetRandomFoodInfo();
 
             //画面上部の新しい位置に配置
             var wRamdom = new Random();
