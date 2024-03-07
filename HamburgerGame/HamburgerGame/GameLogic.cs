@@ -48,18 +48,18 @@ namespace HamburgerGame {
         /// <summary>
         /// 終了か否かのフラグ
         /// </summary>
-        private bool FEndFlag = false;
+        private bool FIsGameEnded = false;
 
 
         /// <summary>
         /// ゲーム画面のフォーム
         /// </summary>
-        private Form FParentForm { get; }
+        private Form ParentForm { get; }
 
         /// <summary>
         /// 獲得した具材のリスト
         /// </summary>
-        public readonly List<Food> FCatchFoodList;
+        public readonly List<Food> FCatchedFoodList;
         /// <summary>
         /// 移動中の具材のリスト
         /// </summary>
@@ -83,10 +83,10 @@ namespace HamburgerGame {
         /// <param name="vAreaPlay">描画するPictureBox</param>
         public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, Form vParentForm) {
             this.FMoveFoodList = new List<Food>();
-            this.FCatchFoodList = new List<Food>();
+            this.FCatchedFoodList = new List<Food>();
             this.FAreaPlay = vAreaPlay;
             this.FPlate = new Plate(vPlate);
-            this.FParentForm = vParentForm;
+            this.ParentForm = vParentForm;
 
             this.FTimer = new Timer();
             this.FTimer.Interval = 20;
@@ -102,7 +102,7 @@ namespace HamburgerGame {
 
             //インターバルごとに具材をリストに追加
             if (FElapsedTime >= C_AddNewFoodInterval) {
-                AddNewFood();
+                this.AddNewFood();
                 FElapsedTime = 0;
             }
 
@@ -116,20 +116,20 @@ namespace HamburgerGame {
             }
 
             // 当たり判定を実行
-            ProcessCollisions();
+            this.ProcessCollisions();
 
             //コントロールの表面全体を無効化し、再描画をマークする
             FAreaPlay.Invalidate();
 
             // 終了判定を実行
-            if (FEndFlag) {
+            if (FIsGameEnded) {
                 FTimer.Stop();
                 //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
                 var wMainMenu = new MainMenu();
                 //TODO:MainMenuに遷移、終了画面を表示に差し替える
                 wMainMenu.Show();
 
-                FParentForm.Close();
+                this.ParentForm.Close();
             }
         }
 
@@ -137,7 +137,7 @@ namespace HamburgerGame {
         /// 新しい具材を移動する具材のリストに追加するメソッド
         /// </summary>
         private void AddNewFood() {
-            Food wNewFood = CreateRandomFood();
+            Food wNewFood = this.CreateRandomFood();
             FMoveFoodList.Add(wNewFood);
         }
 
@@ -170,9 +170,9 @@ namespace HamburgerGame {
         /// </summary>
         public void InitializeGameScreen() {
             //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドをイベントハンドラとして登録
-            FAreaPlay.Paint += DrawFMoveListFood;
+            FAreaPlay.Paint += this.DrawFMoveListFood;
             //最初の具材を追加する
-            AddNewFood();
+            this.AddNewFood();
         }
 
         /// <summary>
@@ -187,11 +187,11 @@ namespace HamburgerGame {
         /// 当たり判定の処理を実行するメソッド
         /// </summary>
         private void ProcessCollisions() {
-            Rectangle wPlateRect = GetPlateRectangle();
+            Rectangle wPlateRect = this.GetPlateRectangle();
 
             foreach (Food wFood in FMoveFoodList.ToArray()) {
-                if (IsCollisions(wFood.Rectangle, wPlateRect)) {
-                    HandleCollision(wFood);
+                if (this.IsCollisions(wFood.Rectangle, wPlateRect)) {
+                    this.HandleCollision(wFood);
                 }
             }
         }
@@ -215,11 +215,11 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
-            FCatchFoodList.Add(vFood);
+            FCatchedFoodList.Add(vFood);
 
             //終了判定を実行
-            JudgeEndGetBunTop(vFood);
-            JudgeEndGetFiveFood();
+            this.JudgeEndGetBunTop(vFood);
+            this.JudgeEndGetFiveFood();
 
             FMoveFoodList.Remove(vFood);
         }
@@ -229,10 +229,10 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetFiveFood() {
-            if (FCatchFoodList.Count == C_MAXCatchedFoodNumber) {
-                FEndFlag = true;
+            if (FCatchedFoodList.Count == C_MAXCatchedFoodNumber) {
+                FIsGameEnded = true;
             }
-            return FEndFlag;
+            return FIsGameEnded;
         }
 
         /// <summary>
@@ -241,10 +241,10 @@ namespace HamburgerGame {
         /// <param name="vFood"></param>
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetBunTop(Food vFood) {
-            if (vFood.FFoodInfo.Name == FEndFoodName) {
-                FEndFlag = true;
+            if (vFood.FoodInfo.Name == FEndFoodName) {
+                FIsGameEnded = true;
             }
-            return FEndFlag;
+            return FIsGameEnded;
         }
 
 

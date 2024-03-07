@@ -10,14 +10,13 @@ namespace HamburgerGame {
         /// </summary>
         private static readonly Color FFoodColor = Color.Brown;
         /// <summary>
-        /// // 具材の座標
+        /// // 具材の座標と幅
         /// </summary>
         public Rectangle Rectangle { get; private set; }
-
         /// <summary>
-        /// FoodInfoのインスタンス
+        /// 具材の情報
         /// </summary>
-        public FoodInfo FFoodInfo { get; }
+        public FoodInfo FoodInfo { get; }
 
         /// <summary>
         /// フードのコンストラクタ
@@ -30,7 +29,7 @@ namespace HamburgerGame {
         public Food(int vPositionX, int vPositionY, int vWidth, int vHeight, FoodInfo vFoodInfo) {
             this.Rectangle = new Rectangle(vPositionX, vPositionY, vWidth, vHeight);
 
-            this.FFoodInfo = vFoodInfo; 
+            this.FoodInfo = vFoodInfo; 
         }
 
         /// <summary>
@@ -44,7 +43,7 @@ namespace HamburgerGame {
         /// 具材を描画するメソッド
         /// </summary>
         public void Draw(Graphics g) {
-            g.DrawImage(FFoodInfo.Image, Rectangle);
+            g.DrawImage(FoodInfo.Image, Rectangle);
         }
     }
 }
