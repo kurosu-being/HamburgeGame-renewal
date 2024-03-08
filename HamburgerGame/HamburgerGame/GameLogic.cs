@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -129,6 +130,10 @@ namespace HamburgerGame {
                 //TODO:MainMenuに遷移、終了画面を表示に差し替える
                 wMainMenu.Show();
 
+                // ゲーム終了時の効果音を追加する
+                var wPlayer = new SoundPlayer(Properties.Resources.fanfare);
+                wPlayer.Play();
+
                 this.ParentForm.Close();
             }
         }
@@ -216,6 +221,10 @@ namespace HamburgerGame {
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
             FCatchedFoodList.Add(vFood);
+
+            // 具材獲得時の効果音を追加する
+            var wPlayer = new SoundPlayer(Properties.Resources._catch);
+            wPlayer.Play();
 
             //終了判定を実行
             this.JudgeEndGetBunTop(vFood);

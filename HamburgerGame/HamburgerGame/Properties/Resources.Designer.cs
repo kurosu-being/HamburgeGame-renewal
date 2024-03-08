@@ -61,6 +61,15 @@ namespace HamburgerGame.Properties {
         }
         
         /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream _catch {
+            get {
+                return ResourceManager.GetStream("_catch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
         internal static System.Drawing.Bitmap bun_top {
@@ -101,12 +110,30 @@ namespace HamburgerGame.Properties {
         }
         
         /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream fanfare {
+            get {
+                return ResourceManager.GetStream("fanfare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
         internal static System.Drawing.Bitmap HambugerSHOP {
             get {
                 object obj = ResourceManager.GetObject("HambugerSHOP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream instore {
+            get {
+                return ResourceManager.GetStream("instore", resourceCulture);
             }
         }
         
