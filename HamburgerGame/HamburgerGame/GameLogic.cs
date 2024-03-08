@@ -25,6 +25,11 @@ namespace HamburgerGame {
         /// </summary>
         private const int C_AddNewFoodInterval = 1200;
         /// <summary>
+        /// 獲得する具材の最大数
+        /// </summary>
+        private const int C_MAXCatchedFoodNumber = 5;
+
+        /// <summary>
         /// 経過時間
         /// </summary>
         private int FElapsedTime = 0;
@@ -37,26 +42,32 @@ namespace HamburgerGame {
         /// </summary>
         private int FSomeValueY = 10;
         /// <summary>
+        /// 獲得すると終了になる具材の名前
+        /// </summary>
+        private string FEndFoodName = "bun_top";
+        /// <summary>
         /// 終了か否かのフラグ
         /// </summary>
-        public bool FEndFlag;
+        private bool FIsEnd = false;
 
+
+        /// <summary>
+        /// ゲーム画面のフォーム
+        /// </summary>
+        private Form ParentForm { get; }
+
+        /// <summary>
+        /// 獲得した具材のリスト
+        /// </summary>
+        public readonly List<Food> FCatchedFoodList;
         /// <summary>
         /// 移動中の具材のリスト
         /// </summary>
         private readonly List<Food> FMoveFoodList;
         /// <summary>
-        /// 獲得した具材のリスト
-        /// </summary>
-        private readonly List<Food> FCatchFoodList;
-        /// <summary>
         /// ゲーム画面を表すPictureBox
         /// </summary>
         private readonly PictureBox FAreaPlay;
-        /// <summary>
-        /// TODO: 獲得した具材の名前を表示するListBoxなのであとで削除する
-        /// </summary>
-        private readonly ListBox FCatchFoodListBox;
         /// <summary>
         /// 皿を表すオブジェクト
         /// </summary>
@@ -70,12 +81,12 @@ namespace HamburgerGame {
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
-        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, ListBox vKakutoku) {
+        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, Form vParentForm) {
             this.FMoveFoodList = new List<Food>();
-            this.FCatchFoodList = new List<Food>();
+            this.FCatchedFoodList = new List<Food>();
             this.FAreaPlay = vAreaPlay;
-            this.FCatchFoodListBox = vKakutoku;
             this.FPlate = new Plate(vPlate);
+            this.ParentForm = vParentForm;
 
             this.FTimer = new Timer();
             this.FTimer.Interval = 20;
@@ -91,7 +102,7 @@ namespace HamburgerGame {
 
             //インターバルごとに具材をリストに追加
             if (FElapsedTime >= C_AddNewFoodInterval) {
-                AddNewFood();
+                this.AddNewFood();
                 FElapsedTime = 0;
             }
 
@@ -105,17 +116,28 @@ namespace HamburgerGame {
             }
 
             // 当たり判定を実行
-            HandleChecker();
+            this.ProcessCollisions();
 
             //コントロールの表面全体を無効化し、再描画をマークする
             FAreaPlay.Invalidate();
+
+            // 終了判定を実行
+            if (FIsEnd) {
+                FTimer.Stop();
+                //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
+                var wMainMenu = new MainMenu();
+                //TODO:MainMenuに遷移、終了画面を表示に差し替える
+                wMainMenu.Show();
+
+                this.ParentForm.Close();
+            }
         }
 
         /// <summary>
         /// 新しい具材を移動する具材のリストに追加するメソッド
         /// </summary>
         private void AddNewFood() {
-            Food wNewFood = CreateRandomFood();
+            Food wNewFood = this.CreateRandomFood();
             FMoveFoodList.Add(wNewFood);
         }
 
@@ -124,7 +146,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>生成された具材の画像</returns>
         private Food CreateRandomFood() {
-            var wRamdomFoodInfo = FoodUtils.GetRandomFoodInfo();
+            FoodInfo wRamdomFoodInfo = FoodUtils.GetRandomFoodInfo();
 
             //画面上部の新しい位置に配置
             var wRamdom = new Random();
@@ -137,7 +159,7 @@ namespace HamburgerGame {
         /// <summary>
         /// FMoveListの具材を描画するメソッド
         /// </summary>
-        public void DrawAreaPlay(object sender, PaintEventArgs e) {
+        public void DrawFMoveListFood(object sender, PaintEventArgs e) {
             foreach (Food wFood in FMoveFoodList.ToArray()) {
                 wFood.Draw(e.Graphics);
             }
@@ -147,9 +169,10 @@ namespace HamburgerGame {
         ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
         public void InitializeGameScreen() {
-            FAreaPlay.Paint += DrawAreaPlay;
+            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドをイベントハンドラとして登録
+            FAreaPlay.Paint += this.DrawFMoveListFood;
             //最初の具材を追加する
-            AddNewFood();
+            this.AddNewFood();
         }
 
         /// <summary>
@@ -163,12 +186,12 @@ namespace HamburgerGame {
         /// <summary>
         /// 当たり判定の処理を実行するメソッド
         /// </summary>
-        private void HandleChecker() {
-            Rectangle wPlateRect = GetPlateRectangle();
+        private void ProcessCollisions() {
+            Rectangle wPlateRect = this.GetPlateRectangle();
 
             foreach (Food wFood in FMoveFoodList.ToArray()) {
-                if (IsCollisions(wFood.Rectangle, wPlateRect)) {
-                    HandleCollision(wFood);
+                if (this.IsCollisions(wFood.Rectangle, wPlateRect)) {
+                    this.HandleCollision(wFood);
                 }
             }
         }
@@ -192,21 +215,38 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
-            FCatchFoodList.Add(vFood);
-            ShowCollisionMessage(vFood);
+            FCatchedFoodList.Add(vFood);
+
+            //終了判定を実行
+            this.JudgeEndGetBunTop(vFood);
+            this.JudgeEndGetFiveFood();
+
             FMoveFoodList.Remove(vFood);
         }
 
         /// <summary>
-        /// TODO: リストボックスに獲得した具材の名前を追加するメソッドなので削除する
+        /// 終了判定：具材を5個獲得したら終了判定フラグをtrueにするメソッド
         /// </summary>
-        /// <param name="food">衝突した具材</param>
-        private void ShowCollisionMessage(Food vFood) {
-            // 具材のリソース名を取得し、リストボックスに追加する
-            string wResourceName = vFood.FFoodInfo.Name;
-            // リソース名は通常小文字で指定される為小文字に
-            FCatchFoodListBox.Items.Add(wResourceName.ToLower());
+        /// <returns>終了したか否かのフラグ</returns>
+        private bool JudgeEndGetFiveFood() {
+            if (FCatchedFoodList.Count == C_MAXCatchedFoodNumber) {
+                FIsEnd = true;
+            }
+            return FIsEnd;
         }
+
+        /// <summary>
+        /// 終了判定：パン上部を獲得したら終了判定フラグをtrueにするメソッド
+        /// </summary>
+        /// <param name="vFood"></param>
+        /// <returns>終了したか否かのフラグ</returns>
+        private bool JudgeEndGetBunTop(Food vFood) {
+            if (vFood.FoodInfo.Name == FEndFoodName) {
+                FIsEnd = true;
+            }
+            return FIsEnd;
+        }
+
 
         /// <summary>
         /// キー入力を受け取り、皿を移動させるメソッド
