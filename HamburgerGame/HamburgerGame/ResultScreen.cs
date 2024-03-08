@@ -18,14 +18,16 @@ namespace HamburgerGame {
             if (e.KeyCode == Keys.Y) {
 
                 // MainMenuフォーム
-                var wMainMenuForm = new MainMenu();
-                wMainMenuForm.ShowDialog();
+                using (var wMainMenuForm = new MainMenu()) {
+                    wMainMenuForm.Show();
 
                 // MainFormフォームのリソースを解放する
                 wMainMenuForm.Dispose();
+                }
 
                 // 現在のフォームを閉じる
                 this.Close();
+                    
             }
             // Nキーが押された場合
             if (e.KeyCode == Keys.N) {

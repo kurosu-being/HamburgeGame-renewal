@@ -13,8 +13,7 @@ namespace HamburgerGame {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainMenu());
-            Application.Run(new ResultScreen());
+            Application.Run(new MainMenu());
         }
     }
 }

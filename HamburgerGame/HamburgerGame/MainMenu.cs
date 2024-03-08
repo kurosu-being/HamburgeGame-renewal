@@ -17,12 +17,17 @@ namespace HamburgerGame {
         /// <param name="e">イベント データを格納している EventArgs</param>
         private void Label_Click(object vSender, EventArgs e) {
             // ゲーム画面のインスタンスを作成
-            var wForm1 = new HamburgerGAME();
-            // ゲーム画面を表示
-            wForm1.Show();
+            using (var wForm1 = new HamburgerGAME()) {
 
-            // メイン画面を非表示にする
-            this.Hide();
+                // ゲーム画面を表示
+                wForm1.Show();
+
+                // Form1のリソースを解放する
+                wForm1.Dispose();
+            }
+
+            // メイン画面を閉じる
+            this.Close();
         }
         /// <summary>
         /// MainMenuFormがロードされたときのイベントハンドラ
