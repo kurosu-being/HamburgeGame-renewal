@@ -48,7 +48,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 終了か否かのフラグ
         /// </summary>
-        private bool FIsGameEnded = false;
+        private bool FIsEnd = false;
 
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace HamburgerGame {
             FAreaPlay.Invalidate();
 
             // 終了判定を実行
-            if (FIsGameEnded) {
+            if (FIsEnd) {
                 FTimer.Stop();
                 //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
                 var wMainMenu = new MainMenu();
@@ -230,9 +230,9 @@ namespace HamburgerGame {
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetFiveFood() {
             if (FCatchedFoodList.Count == C_MAXCatchedFoodNumber) {
-                FIsGameEnded = true;
+                FIsEnd = true;
             }
-            return FIsGameEnded;
+            return FIsEnd;
         }
 
         /// <summary>
@@ -242,9 +242,9 @@ namespace HamburgerGame {
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetBunTop(Food vFood) {
             if (vFood.FoodInfo.Name == FEndFoodName) {
-                FIsGameEnded = true;
+                FIsEnd = true;
             }
-            return FIsGameEnded;
+            return FIsEnd;
         }
 
 
