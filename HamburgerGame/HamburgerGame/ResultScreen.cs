@@ -16,15 +16,19 @@ namespace HamburgerGame {
         private void ResultScreen_KeyDown(object vSender, KeyEventArgs e) {
             // Yキーが押された場合
             if (e.KeyCode == Keys.Y) {
-                // MainMenuフォーム
-                var wMainMenu = new MainMenu();
-                wMainMenu.Show();
 
-                // 現在のフォームを非表示にする
-                this.Hide();
+                // MainMenuフォーム
+                var wMainMenuForm = new MainMenu();
+                wMainMenuForm.ShowDialog();
+
+                // MainFormフォームのリソースを解放する
+                wMainMenuForm.Dispose();
+
+                // 現在のフォームを閉じる
+                this.Close();
             }
             // Nキーが押された場合
-            else if (e.KeyCode == Keys.N) {
+            if (e.KeyCode == Keys.N) {
                 // 画面を閉じる
                 this.Close();
             }
