@@ -23,8 +23,8 @@ namespace HamburgerGame {
             wForm1.Show();
 
             // 入店時の効果音を追加する
-            var wPlayer = new SoundPlayer(Properties.Resources.instore);
-            wPlayer.Play();
+            var wInStorePlayer = new SoundPlayer(Properties.Resources.instore);
+            wInStorePlayer.Play();
 
             // メイン画面を非表示にする
             this.Hide();

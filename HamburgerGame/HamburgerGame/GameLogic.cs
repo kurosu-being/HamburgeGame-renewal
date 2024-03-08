@@ -131,8 +131,8 @@ namespace HamburgerGame {
                 wMainMenu.Show();
 
                 // ゲーム終了時の効果音を追加する
-                var wPlayer = new SoundPlayer(Properties.Resources.fanfare);
-                wPlayer.Play();
+                var wEndPlayer = new SoundPlayer(Properties.Resources.fanfare);
+                wEndPlayer.Play();
 
                 this.ParentForm.Close();
             }
@@ -223,8 +223,8 @@ namespace HamburgerGame {
             FCatchedFoodList.Add(vFood);
 
             // 具材獲得時の効果音を追加する
-            var wPlayer = new SoundPlayer(Properties.Resources._catch);
-            wPlayer.Play();
+            var wCatchedFoodPlayer = new SoundPlayer(Properties.Resources._catch);
+            wCatchedFoodPlayer.Play();
 
             //終了判定を実行
             this.JudgeEndGetBunTop(vFood);
