@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -17,16 +16,16 @@ namespace HamburgerGame {
             InitializeGame();
 
             // キー入力をフォームが優先的に受け取るようにする
-            KeyPreview = true; 
+            this.KeyPreview = true;
             // フォームのKeyDownイベントにイベントハンドラを関連付ける
-            KeyDown += HamburgerGAME_KeyDown;
+            this.KeyDown += HamburgerGAME_KeyDown;
         }
 
         /// <summary>
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
         private void InitializeGame() {
-            FGameLogic = new GameLogic(Area_Play, Plate, listBox1);
+            FGameLogic = new GameLogic(Area_Play, Plate, this);
             FGameLogic.InitializeGameScreen();
         }
 
