@@ -223,7 +223,7 @@ namespace HamburgerGame {
             FCatchedFoodList.Add(vFood);
 
             // 具材獲得時の効果音を追加する
-            var wCatchedFoodPlayer = new SoundPlayer(Properties.Resources._catch);
+            var wCatchedFoodPlayer = new SoundPlayer(Properties.Resources.catched);
             wCatchedFoodPlayer.Play();
 
             //終了判定を実行
