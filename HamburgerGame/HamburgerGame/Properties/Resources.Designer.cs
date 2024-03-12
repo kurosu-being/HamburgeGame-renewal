@@ -83,9 +83,9 @@ namespace HamburgerGame.Properties {
         /// <summary>
         ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream catched {
+        internal static System.IO.UnmanagedMemoryStream caught {
             get {
-                return ResourceManager.GetStream("catched", resourceCulture);
+                return ResourceManager.GetStream("caught", resourceCulture);
             }
         }
         

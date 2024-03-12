@@ -28,11 +28,11 @@ namespace HamburgerGame {
         /// <summary>
         /// 獲得する具材の最大数
         /// </summary>
-        private const int C_MAXCatchedFoodNumber = 5;
+        private const int C_MAXCaughtFoodNumber = 5;
         /// <summary>
         /// Area_Displayに具材を積み重ねる間隔
         /// </summary>
-        private const int C_SpaceOfCatchedFoodY = 60;
+        private const int C_SpaceOfCaughtFoodY = 60;
         /// <summary>
         /// Area_Displayに具材を最初に表示するY座標が、どれだけbun_underから離れているかのY座標幅
         /// </summary>
@@ -73,7 +73,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 獲得した具材のリスト
         /// </summary>
-        public readonly List<Food> FCatchedFoodList;
+        public readonly List<Food> FCaughtFoodList;
         /// <summary>
         /// 移動中の具材のリスト
         /// </summary>
@@ -103,7 +103,7 @@ namespace HamburgerGame {
         /// <param name="vAreaPlay">描画するPictureBox</param>
         public GameLogic(PictureBox vAreaPlay, PictureBox vAreaDisplay, PictureBox vPlate, Form vParentForm, PictureBox vBunUnder) {
             this.FMoveFoodList = new List<Food>();
-            this.FCatchedFoodList = new List<Food>();
+            this.FCaughtFoodList = new List<Food>();
             this.FAreaPlay = vAreaPlay;
             this.FAreaDisplay = vAreaDisplay;
             this.FPlate = new Plate(vPlate);
@@ -162,9 +162,9 @@ namespace HamburgerGame {
         ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
         public void InitializeGameScreen() {
-            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッド、FAreaDisplay.Paint イベントDrawFCatchedListFoodメソッドをイベントハンドラとして登録
+            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッド、FAreaDisplay.Paint イベントDrawFCaughtListFoodメソッドをイベントハンドラとして登録
             FAreaPlay.Paint += this.DrawFMoveListFood;
-            FAreaDisplay.Paint += this.DrawFCatchedListFood;
+            FAreaDisplay.Paint += this.DrawFCaughtListFood;
             //最初の具材を追加する
             this.AddNewFood();
         }
@@ -204,23 +204,23 @@ namespace HamburgerGame {
         /// <summary>
         /// 獲得した具材をパン下部の上に生成するメソッド
         /// </summary>
-        public void StackCatchedFood() {
+        public void StackCaughtFood() {
             //獲得した具材の最初のY座標
             int wStartY = FBunUnder.Bounds.Y - C_SomeBunUnderY;
-            foreach (Food wFood in FCatchedFoodList) {
+            foreach (Food wFood in FCaughtFoodList) {
                 // 描画位置の設定
                 wFood.Rectangle = new Rectangle(FBunUnder.Bounds.X - FAreaPlay.Width, wStartY, FBunUnder.Width, FBunUnder.Height);
-                wStartY -= C_SpaceOfCatchedFoodY;
+                wStartY -= C_SpaceOfCaughtFoodY;
             }
             // Area_Display を再描画する
             FAreaDisplay.Invalidate();
         }
 
         /// <summary>
-        /// FCatchedListFoodの具材を描画するメソッド
+        /// FCaughtListFoodの具材を描画するメソッド
         /// </summary>
-        public void DrawFCatchedListFood(object sender, PaintEventArgs e) {
-            foreach (Food wFood in FCatchedFoodList.ToArray()) {
+        public void DrawFCaughtListFood(object sender, PaintEventArgs e) {
+            foreach (Food wFood in FCaughtFoodList.ToArray()) {
                 wFood.Draw(e.Graphics);
             }
         }
@@ -257,11 +257,11 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
-            FCatchedFoodList.Add(vFood);
+            FCaughtFoodList.Add(vFood);
 
-            StackCatchedFood();
+            StackCaughtFood();
             // 具材獲得時の効果音を追加する
-            new SoundPlayer(Properties.Resources.catched).Play();
+            new SoundPlayer(Properties.Resources.caught).Play();
 
             //終了判定を実行
             this.JudgeEndGetBunTop(vFood);
@@ -275,7 +275,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetFiveFood() {
-            if (FCatchedFoodList.Count == C_MAXCatchedFoodNumber) {
+            if (FCaughtFoodList.Count == C_MAXCaughtFoodNumber) {
                 FIsEnd = true;
             }
             return FIsEnd;
