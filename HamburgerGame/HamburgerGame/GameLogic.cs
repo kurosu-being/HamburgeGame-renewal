@@ -162,7 +162,7 @@ namespace HamburgerGame {
         ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
         public void InitializeGameScreen() {
-            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドとDrawFCatchedListFoodメソッドをイベントハンドラとして登録
+            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッド、FAreaDisplay.Paint イベントDrawFCatchedListFoodメソッドをイベントハンドラとして登録
             FAreaPlay.Paint += this.DrawFMoveListFood;
             FAreaDisplay.Paint += this.DrawFCatchedListFood;
             //最初の具材を追加する
