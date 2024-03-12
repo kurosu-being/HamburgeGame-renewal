@@ -66,11 +66,11 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.label2.Location = new System.Drawing.Point(285, 514);
+            this.label2.Location = new System.Drawing.Point(427, 511);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(427, 29);
+            this.label2.Size = new System.Drawing.Size(153, 29);
             this.label2.TabIndex = 2;
-            this.label2.Text = "続ける「Y」/やめる「Ｎ」入力してください";
+            this.label2.Text = "続ける？y/n";
             // 
             // pictureBox2
             // 

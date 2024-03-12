@@ -19,8 +19,8 @@ namespace HamburgerGame {
             // ゲーム画面のインスタンスを作成
             var wForm1 = new HamburgerGAME();
 
-                // ゲーム画面を表示
-                wForm1.Show();
+            // ゲーム画面を表示
+            wForm1.Show();
 
             // メイン画面を非表示にする
             this.Hide();

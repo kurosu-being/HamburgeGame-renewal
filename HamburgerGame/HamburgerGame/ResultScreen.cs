@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace HamburgerGame {
     public partial class ResultScreen : Form {
@@ -7,18 +8,24 @@ namespace HamburgerGame {
         }
         private void ResultScreen_KeyDown(object vSender, KeyEventArgs e) {
             var wMainMenuForm = Application.OpenForms["MainMenu"];
-            // Yを押すとメインフォームを表示
-            if (e.KeyCode == Keys.Y) {
+
+            switch (e.KeyCode) {
+                case Keys.Y:
                 if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
                     wMainMenuForm.Show();
                 } else {
-                    MessageBox.Show("MainMenuフォーム名でnull参照がありました。フォームの名前を確認してください。");
-                }
+                        // エラーメッセージを表示して例外をスロー
+                        string wErrorMessage = "MainMenuフォーム名でnull参照がありました。フォームの名前を確認してください。";
+                        MessageBox.Show("エラー: " + wErrorMessage);
+                        throw new Exception(wErrorMessage);
+                        }
                 this.Close(); // リザルト画面を閉じる
-            }
+                break;
+
             // Nを押すとすべてのフォームを閉じる
-            else if (e.KeyCode == Keys.N) {
+            case Keys.N:
                 Application.Exit();
+                break;
             }
         }
     }
