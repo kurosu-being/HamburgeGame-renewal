@@ -35,13 +35,13 @@ namespace HamburgerGame {
         /// <param name="e">イベント データを格納している EventArgs</param>
         private void MainMenu_Load(object vSender, EventArgs e) {
             // ラベルがピクチャーボックスの子コントロールになるように設定  
-            this.pictureBox1.Controls.Add(this.Label);
+            this.FHamburgerShop.Controls.Add(this.Label);
             // ラベルを透明色に設定  
             this.Label.BackColor = Color.Transparent;
 
             // ラベルがピクチャーボックスの中央に来るように設定
-            this.Label.Top = (this.pictureBox1.Height - this.Label.Height);
-            this.Label.Left = (this.pictureBox1.Width - this.Label.Width) / 2;
+            this.Label.Top = (this.FHamburgerShop.Height - this.Label.Height);
+            this.Label.Left = (this.FHamburgerShop.Width - this.Label.Width) / 2;
         }
     }
 }

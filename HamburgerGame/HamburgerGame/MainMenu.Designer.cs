@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.Label = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.FHamburgerShop = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.FHamburgerShop)).BeginInit();
             this.SuspendLayout();
             // 
             // Label
@@ -49,16 +49,16 @@
             this.Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Label.Click += new System.EventHandler(this.Label_Click);
             // 
-            // pictureBox1
+            // FHamburgerShop
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::HamburgerGame.Properties.Resources.HambugerSHOP;
-            this.pictureBox1.Location = new System.Drawing.Point(177, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(450, 450);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.FHamburgerShop.BackColor = System.Drawing.Color.Transparent;
+            this.FHamburgerShop.Image = global::HamburgerGame.Properties.Resources.HambugerSHOP;
+            this.FHamburgerShop.Location = new System.Drawing.Point(177, 0);
+            this.FHamburgerShop.Name = "FHamburgerShop";
+            this.FHamburgerShop.Size = new System.Drawing.Size(450, 450);
+            this.FHamburgerShop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.FHamburgerShop.TabIndex = 0;
+            this.FHamburgerShop.TabStop = false;
             // 
             // MainMenu
             // 
@@ -67,20 +67,20 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Label);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.FHamburgerShop);
             this.Name = "MainMenu";
             this.RightToLeftLayout = true;
             this.Text = "MainMenu";
             this.TransparencyKey = System.Drawing.Color.Magenta;
             this.Load += new System.EventHandler(this.MainMenu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FHamburgerShop)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox FHamburgerShop;
         internal System.Windows.Forms.Label Label;
     }
 }
