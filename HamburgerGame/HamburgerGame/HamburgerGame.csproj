@@ -102,7 +102,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\bun_top.png" />
+    <None Include="Resources\catch.wav" />
     <Content Include="Resources\cheese.png" />
+    <None Include="Resources\instore.wav" />
+    <None Include="Resources\fanfare.wav" />
     <Content Include="Resources\lettuce.png" />
     <Content Include="Resources\patty.png" />
     <Content Include="Resources\tomato.png" />
