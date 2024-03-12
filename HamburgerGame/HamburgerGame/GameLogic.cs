@@ -29,11 +29,11 @@ namespace HamburgerGame {
         /// </summary>
         private const int C_MAXCatchedFoodNumber = 5;
         /// <summary>
-        /// 積み重ねる間隔
+        /// Area_Displayに具材を積み重ねる間隔
         /// </summary>
         private const int C_SpaceOfCatchedFoodY = 60;
         /// <summary>
-        /// パン下部からどれだけ上部に最初の獲得するかのY座標幅
+        /// Area_Displayに具材を最初に表示するY座標が、どれだけbun_underから離れているかのY座標幅
         /// </summary>
         private const int C_SomeBunUnderY = 80;
 
