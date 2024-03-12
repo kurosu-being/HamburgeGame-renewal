@@ -124,8 +124,8 @@ namespace HamburgerGame {
             // 終了判定を実行
             if (FIsEnd) {
                 FTimer.Stop();
-                //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
-                var wMainMenu = new MainMenu();
+                //TODO: 終了判定trueの時の処理、ResultScreenに遷移する
+                var wMainMenu = new ResultScreen();
                 //TODO:MainMenuに遷移、終了画面を表示に差し替える
                 wMainMenu.Show();
 
