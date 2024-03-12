@@ -28,6 +28,14 @@ namespace HamburgerGame {
         /// 獲得する具材の最大数
         /// </summary>
         private const int C_MAXCatchedFoodNumber = 5;
+        /// <summary>
+        /// 積み重ねる間隔
+        /// </summary>
+        private const int C_SpaceOfCatchedFoodY = 60;
+        /// <summary>
+        /// パン下部からどれだけ上部に最初の獲得するかのY座標幅
+        /// </summary>
+        private const int C_SomeBunUnderY = 80;
 
         /// <summary>
         /// 経過時間
@@ -45,6 +53,7 @@ namespace HamburgerGame {
         /// 獲得すると終了になる具材の名前
         /// </summary>
         private string FEndFoodName = "bun_top";
+
         /// <summary>
         /// 終了か否かのフラグ
         /// </summary>
@@ -55,6 +64,10 @@ namespace HamburgerGame {
         /// ゲーム画面のフォーム
         /// </summary>
         private Form ParentForm { get; }
+        /// <summary>
+        /// パン下部のPictureBox
+        /// </summary>
+        private PictureBox BunUnder { get; set; }
 
         /// <summary>
         /// 獲得した具材のリスト
@@ -69,6 +82,10 @@ namespace HamburgerGame {
         /// </summary>
         private readonly PictureBox FAreaPlay;
         /// <summary>
+        /// 獲得画面を表すPictureBox
+        /// </summary>
+        private readonly PictureBox FAreaDisplay;
+        /// <summary>
         /// 皿を表すオブジェクト
         /// </summary>
         private readonly Plate FPlate;
@@ -77,16 +94,20 @@ namespace HamburgerGame {
         /// </summary>
         private readonly Timer FTimer;
 
+       
+
         /// <summary>
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
-        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, Form vParentForm) {
+        public GameLogic(PictureBox vAreaPlay, PictureBox vAreaDisplay, PictureBox vPlate, Form vParentForm, PictureBox vBunUnder) {
             this.FMoveFoodList = new List<Food>();
             this.FCatchedFoodList = new List<Food>();
             this.FAreaPlay = vAreaPlay;
+            this.FAreaDisplay = vAreaDisplay;
             this.FPlate = new Plate(vPlate);
             this.ParentForm = vParentForm;
+            this.BunUnder = vBunUnder;
 
             this.FTimer = new Timer();
             this.FTimer.Interval = 20;
@@ -132,6 +153,22 @@ namespace HamburgerGame {
                 this.ParentForm.Close();
             }
         }
+        /// <summary>
+        /// 獲得した具材をパン下部の上に生成するメソッド
+        /// </summary>
+        public void StackCatchedFood() {
+            //パン下部画像の上辺のX座標
+            int wCenterOfBunUnder = (BunUnder.Bounds.X - FAreaPlay.Width) + 10; //10は目視での微調整
+            //獲得した具材の最初のY座標
+            int wStartY = BunUnder.Bounds.Y - C_SomeBunUnderY;
+            foreach (Food wFood in FCatchedFoodList) {
+                // 描画位置の設定
+                wFood.Rectangle = new Rectangle(wCenterOfBunUnder, wStartY, wFood.Rectangle.Width, wFood.Rectangle.Height);
+                wStartY -= C_SpaceOfCatchedFoodY;
+            }
+            // Area_Display を再描画する
+            FAreaDisplay.Invalidate(); 
+        }
 
         /// <summary>
         /// 新しい具材を移動する具材のリストに追加するメソッド
@@ -166,11 +203,21 @@ namespace HamburgerGame {
         }
 
         /// <summary>
+        /// FMoveListの具材を描画するメソッド
+        /// </summary>
+        public void DrawFCatchedListFood(object sender, PaintEventArgs e) {
+            foreach (Food wFood in FCatchedFoodList.ToArray()) {
+                wFood.Draw(e.Graphics);
+            }
+        }
+
+        /// <summary>
         ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
         public void InitializeGameScreen() {
             //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドをイベントハンドラとして登録
             FAreaPlay.Paint += this.DrawFMoveListFood;
+            FAreaDisplay.Paint += this.DrawFCatchedListFood;
             //最初の具材を追加する
             this.AddNewFood();
         }
@@ -217,6 +264,8 @@ namespace HamburgerGame {
         private void HandleCollision(Food vFood) {
             FCatchedFoodList.Add(vFood);
 
+            StackCatchedFood();
+
             //終了判定を実行
             this.JudgeEndGetBunTop(vFood);
             this.JudgeEndGetFiveFood();
@@ -246,7 +295,6 @@ namespace HamburgerGame {
             }
             return FIsEnd;
         }
-
 
         /// <summary>
         /// キー入力を受け取り、皿を移動させるメソッド

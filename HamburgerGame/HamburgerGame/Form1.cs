@@ -25,7 +25,7 @@ namespace HamburgerGame {
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
         private void InitializeGame() {
-            FGameLogic = new GameLogic(Area_Play, Plate, this);
+            FGameLogic = new GameLogic(Area_Play, Area_Display, Plate, this, bun_under);
             FGameLogic.InitializeGameScreen();
         }
 
