@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
@@ -20,6 +21,9 @@ namespace HamburgerGame {
             var wForm1 = new HamburgerGAME();
             // ゲーム画面を表示
             wForm1.Show();
+
+            // 入店時の効果音を追加する
+            new SoundPlayer(Properties.Resources.instore).Play();
 
             // メイン画面を非表示にする
             this.Hide();
