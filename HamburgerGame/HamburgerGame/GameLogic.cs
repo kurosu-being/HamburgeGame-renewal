@@ -67,7 +67,7 @@ namespace HamburgerGame {
         /// <summary>
         /// パン下部のPictureBox
         /// </summary>
-        private PictureBox BunUnder { get; set; }
+        private PictureBox FBunUnder;
 
         /// <summary>
         /// 獲得した具材のリスト
@@ -107,7 +107,7 @@ namespace HamburgerGame {
             this.FAreaDisplay = vAreaDisplay;
             this.FPlate = new Plate(vPlate);
             this.ParentForm = vParentForm;
-            this.BunUnder = vBunUnder;
+            this.FBunUnder = vBunUnder;
 
             this.FTimer = new Timer();
             this.FTimer.Interval = 20;
@@ -153,21 +153,16 @@ namespace HamburgerGame {
                 this.ParentForm.Close();
             }
         }
+
         /// <summary>
-        /// 獲得した具材をパン下部の上に生成するメソッド
+        ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
         /// </summary>
-        public void StackCatchedFood() {
-            //パン下部画像の上辺のX座標
-            int wCenterOfBunUnder = (BunUnder.Bounds.X - FAreaPlay.Width) + 10; //10は目視での微調整
-            //獲得した具材の最初のY座標
-            int wStartY = BunUnder.Bounds.Y - C_SomeBunUnderY;
-            foreach (Food wFood in FCatchedFoodList) {
-                // 描画位置の設定
-                wFood.Rectangle = new Rectangle(wCenterOfBunUnder, wStartY, wFood.Rectangle.Width, wFood.Rectangle.Height);
-                wStartY -= C_SpaceOfCatchedFoodY;
-            }
-            // Area_Display を再描画する
-            FAreaDisplay.Invalidate(); 
+        public void InitializeGameScreen() {
+            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドとDrawFCatchedListFoodメソッドをイベントハンドラとして登録
+            FAreaPlay.Paint += this.DrawFMoveListFood;
+            FAreaDisplay.Paint += this.DrawFCatchedListFood;
+            //最初の具材を追加する
+            this.AddNewFood();
         }
 
         /// <summary>
@@ -194,7 +189,7 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// FMoveListの具材を描画するメソッド
+        /// FMoveFoodListの具材を描画するメソッド
         /// </summary>
         public void DrawFMoveListFood(object sender, PaintEventArgs e) {
             foreach (Food wFood in FMoveFoodList.ToArray()) {
@@ -203,31 +198,27 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// FMoveListの具材を描画するメソッド
+        /// 獲得した具材をパン下部の上に生成するメソッド
+        /// </summary>
+        public void StackCatchedFood() {
+            //獲得した具材の最初のY座標
+            int wStartY = FBunUnder.Bounds.Y - C_SomeBunUnderY;
+            foreach (Food wFood in FCatchedFoodList) {
+                // 描画位置の設定
+                wFood.Rectangle = new Rectangle(FBunUnder.Bounds.X - FAreaPlay.Width, wStartY, FBunUnder.Width, FBunUnder.Height);
+                wStartY -= C_SpaceOfCatchedFoodY;
+            }
+            // Area_Display を再描画する
+            FAreaDisplay.Invalidate();
+        }
+
+        /// <summary>
+        /// FCatchedListFoodの具材を描画するメソッド
         /// </summary>
         public void DrawFCatchedListFood(object sender, PaintEventArgs e) {
             foreach (Food wFood in FCatchedFoodList.ToArray()) {
                 wFood.Draw(e.Graphics);
             }
-        }
-
-        /// <summary>
-        ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
-        /// </summary>
-        public void InitializeGameScreen() {
-            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドをイベントハンドラとして登録
-            FAreaPlay.Paint += this.DrawFMoveListFood;
-            FAreaDisplay.Paint += this.DrawFCatchedListFood;
-            //最初の具材を追加する
-            this.AddNewFood();
-        }
-
-        /// <summary>
-        /// Plateの位置情報を取得するためのメソッド
-        /// </summary>
-        /// <returns>Plateの位置情報</returns>
-        private Rectangle GetPlateRectangle() {
-            return FPlate.PlatePictureBox.Bounds;
         }
 
         /// <summary>
@@ -294,6 +285,14 @@ namespace HamburgerGame {
                 FIsEnd = true;
             }
             return FIsEnd;
+        }
+
+        /// <summary>
+        /// Plateの位置情報を取得するためのメソッド
+        /// </summary>
+        /// <returns>Plateの位置情報</returns>
+        private Rectangle GetPlateRectangle() {
+            return FPlate.PlatePictureBox.Bounds;
         }
 
         /// <summary>
