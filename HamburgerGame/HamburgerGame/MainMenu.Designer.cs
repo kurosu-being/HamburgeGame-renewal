@@ -41,9 +41,9 @@
             this.Label.BackColor = System.Drawing.Color.Black;
             this.Label.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(12)));
             this.Label.ForeColor = System.Drawing.Color.White;
-            this.Label.Location = new System.Drawing.Point(277, 267);
+            this.Label.Location = new System.Drawing.Point(348, 331);
             this.Label.Name = "Label";
-            this.Label.Size = new System.Drawing.Size(252, 174);
+            this.Label.Size = new System.Drawing.Size(307, 215);
             this.Label.TabIndex = 1;
             this.Label.Text = "入店";
             this.Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,7 +65,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.Label);
             this.Controls.Add(this.FHamburgerShop);
             this.Name = "MainMenu";

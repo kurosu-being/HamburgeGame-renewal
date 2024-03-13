@@ -145,10 +145,10 @@ namespace HamburgerGame {
             // 終了判定を実行
             if (FIsEnd) {
                 FTimer.Stop();
-                //TODO: 終了判定trueの時の処理、ここでは仮にMainMenuに遷移するが終了画面に差し替える
-                var wMainMenu = new MainMenu();
-                //TODO:MainMenuに遷移、終了画面を表示に差し替える
-                wMainMenu.Show();
+                //終了判定trueの時、ResultScreenに遷移する
+                var wResultScreen = new ResultScreen();
+                //終了画面を表示
+                wResultScreen.Show();
 
                 // ゲーム終了時の効果音を追加する
                 new SoundPlayer(Properties.Resources.fanfare).Play();

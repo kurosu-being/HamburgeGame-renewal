@@ -19,6 +19,7 @@ namespace HamburgerGame {
         private void Label_Click(object vSender, EventArgs e) {
             // ゲーム画面のインスタンスを作成
             var wForm1 = new HamburgerGAME();
+
             // ゲーム画面を表示
             wForm1.Show();
 
