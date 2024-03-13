@@ -11,19 +11,19 @@ namespace HamburgerGame {
 
             switch (e.KeyCode) {
                 case Keys.Y:
-                if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
-                    wMainMenuForm.Show();
-                } else {
+                    if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
+                        wMainMenuForm.Show();
+                    } else {
                         // エラーメッセージを表示して例外をスロー
                         throw new Exception("メインメニューフォームが見つかりませんでした。開発者に連絡してください。");
                     }
-                this.Close(); // リザルト画面を閉じる
-                break;
+                    this.Close(); // リザルト画面を閉じる
+                    break;
 
-            // Nを押すとすべてのフォームを閉じる
-            case Keys.N:
-                Application.Exit();
-                break;
+                // Nを押すとすべてのフォームを閉じる
+                case Keys.N:
+                    Application.Exit();
+                    break;
             }
         }
     }
