@@ -60,7 +60,6 @@ namespace HamburgerGame {
         /// </summary>
         private bool FIsEnd = false;
 
-
         /// <summary>
         /// ゲーム画面のフォーム
         /// </summary>
@@ -95,8 +94,6 @@ namespace HamburgerGame {
         /// </summary>
         private readonly Timer FTimer;
 
-       
-
         /// <summary>
         /// ゲームロジックのコンストラクタ
         /// </summary>
@@ -128,8 +125,10 @@ namespace HamburgerGame {
                 FElapsedTime = 0;
             }
 
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wMoveFoodsCopy = new List<Food>(FMoveFoodList);
             //具材を落下させ、Y座標が描画されるPictureBoxのY座標に達した時削除される
-            foreach (Food wFood in FMoveFoodList.ToArray()) {
+            foreach (Food wFood in wMoveFoodsCopy) {
                 wFood.Move(0, C_FallingFoodSpeed);
 
                 if (wFood.Rectangle.Y > FAreaPlay.Height) {
@@ -196,7 +195,9 @@ namespace HamburgerGame {
         /// FMoveFoodListの具材を描画するメソッド
         /// </summary>
         public void DrawFMoveListFood(object sender, PaintEventArgs e) {
-            foreach (Food wFood in FMoveFoodList.ToArray()) {
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wMoveFoodsCopy = new List<Food>(FMoveFoodList);
+            foreach (Food wFood in wMoveFoodsCopy) {
                 wFood.Draw(e.Graphics);
             }
         }
@@ -216,11 +217,14 @@ namespace HamburgerGame {
             FAreaDisplay.Invalidate();
         }
 
+
         /// <summary>
         /// FCaughtListFoodの具材を描画するメソッド
         /// </summary>
         public void DrawFCaughtListFood(object sender, PaintEventArgs e) {
-            foreach (Food wFood in FCaughtFoodList.ToArray()) {
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wCaughtFoodsCopy = new List<Food>(FCaughtFoodList);
+            foreach (Food wFood in wCaughtFoodsCopy) {
                 wFood.Draw(e.Graphics);
             }
         }
@@ -231,7 +235,9 @@ namespace HamburgerGame {
         private void ProcessCollisions() {
             Rectangle wPlateRect = this.GetPlateRectangle();
 
-            foreach (Food wFood in FMoveFoodList.ToArray()) {
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wMoveFoodsCopy = new List<Food>(FMoveFoodList);
+            foreach (Food wFood in wMoveFoodsCopy) {
                 if (this.IsCollisions(wFood.Rectangle, wPlateRect)) {
                     this.HandleCollision(wFood);
                 }
