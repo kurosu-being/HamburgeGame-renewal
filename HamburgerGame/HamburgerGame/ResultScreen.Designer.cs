@@ -66,11 +66,11 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.label2.Location = new System.Drawing.Point(427, 511);
+            this.label2.Location = new System.Drawing.Point(366, 514);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 29);
+            this.label2.Size = new System.Drawing.Size(283, 29);
             this.label2.TabIndex = 2;
-            this.label2.Text = "続ける？y/n";
+            this.label2.Text = "MainMenuに戻る [Enter]";
             // 
             // pictureBox2
             // 
