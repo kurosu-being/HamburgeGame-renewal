@@ -15,10 +15,8 @@ namespace HamburgerGame {
                     wMainMenuForm.Show();
                 } else {
                         // エラーメッセージを表示して例外をスロー
-                        string wErrorMessage = "MainMenuフォーム名でnull参照がありました。フォームの名前を確認してください。";
-                        MessageBox.Show("エラー: " + wErrorMessage);
-                        throw new Exception(wErrorMessage);
-                        }
+                        throw new Exception("メインメニューフォームが見つかりませんでした。開発者に連絡してください。");
+                    }
                 this.Close(); // リザルト画面を閉じる
                 break;
 
