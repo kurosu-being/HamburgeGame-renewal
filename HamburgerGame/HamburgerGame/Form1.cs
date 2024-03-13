@@ -25,7 +25,7 @@ namespace HamburgerGame {
         /// ゲームを初期化し、ゲームロジックを設定するメソッド
         /// </summary>
         private void InitializeGame() {
-            FGameLogic = new GameLogic(Area_Play, Plate, this);
+            FGameLogic = new GameLogic(FAreaPlay, FAreaDisplay, FPlate, this, FBunUnder);
             FGameLogic.InitializeGameScreen();
         }
 
@@ -33,7 +33,7 @@ namespace HamburgerGame {
         /// キー入力を受け取り、皿を移動させる
         /// </summary>
         private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
-            FGameLogic.ProcessKeyPress(e.KeyCode, Area_Play.Width);
+            FGameLogic.ProcessKeyPress(e.KeyCode, FAreaPlay.Width);
         }
         private void HamburgerGAME_Load_1(object sender, EventArgs e) {
         }

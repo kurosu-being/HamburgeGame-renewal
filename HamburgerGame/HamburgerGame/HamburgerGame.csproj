@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="Resources\bun_top.png" />
     <None Include="Resources\catch.wav" />
+    <None Include="Resources\caught.wav" />
     <Content Include="Resources\cheese.png" />
     <None Include="Resources\instore.wav" />
     <None Include="Resources\fanfare.wav" />

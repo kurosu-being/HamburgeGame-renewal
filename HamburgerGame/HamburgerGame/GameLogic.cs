@@ -28,7 +28,15 @@ namespace HamburgerGame {
         /// <summary>
         /// 獲得する具材の最大数
         /// </summary>
-        private const int C_MAXCatchedFoodNumber = 5;
+        private const int C_MAXCaughtFoodNumber = 5;
+        /// <summary>
+        /// Area_Displayに具材を積み重ねる間隔
+        /// </summary>
+        private const int C_SpaceOfCaughtFoodY = 60;
+        /// <summary>
+        /// Area_Displayに具材を最初に表示するY座標が、どれだけbun_underから離れているかのY座標幅
+        /// </summary>
+        private const int C_SomeBunUnderY = 80;
 
         /// <summary>
         /// 経過時間
@@ -46,21 +54,25 @@ namespace HamburgerGame {
         /// 獲得すると終了になる具材の名前
         /// </summary>
         private string FEndFoodName = "bun_top";
+
         /// <summary>
         /// 終了か否かのフラグ
         /// </summary>
         private bool FIsEnd = false;
 
-
         /// <summary>
         /// ゲーム画面のフォーム
         /// </summary>
         private Form ParentForm { get; }
+        /// <summary>
+        /// パン下部のPictureBox
+        /// </summary>
+        private PictureBox FBunUnder;
 
         /// <summary>
         /// 獲得した具材のリスト
         /// </summary>
-        public readonly List<Food> FCatchedFoodList;
+        public readonly List<Food> FCaughtFoodList;
         /// <summary>
         /// 移動中の具材のリスト
         /// </summary>
@@ -69,6 +81,10 @@ namespace HamburgerGame {
         /// ゲーム画面を表すPictureBox
         /// </summary>
         private readonly PictureBox FAreaPlay;
+        /// <summary>
+        /// 獲得画面を表すPictureBox
+        /// </summary>
+        private readonly PictureBox FAreaDisplay;
         /// <summary>
         /// 皿を表すオブジェクト
         /// </summary>
@@ -82,12 +98,14 @@ namespace HamburgerGame {
         /// ゲームロジックのコンストラクタ
         /// </summary>
         /// <param name="vAreaPlay">描画するPictureBox</param>
-        public GameLogic(PictureBox vAreaPlay, PictureBox vPlate, Form vParentForm) {
+        public GameLogic(PictureBox vAreaPlay, PictureBox vAreaDisplay, PictureBox vPlate, Form vParentForm, PictureBox vBunUnder) {
             this.FMoveFoodList = new List<Food>();
-            this.FCatchedFoodList = new List<Food>();
+            this.FCaughtFoodList = new List<Food>();
             this.FAreaPlay = vAreaPlay;
+            this.FAreaDisplay = vAreaDisplay;
             this.FPlate = new Plate(vPlate);
             this.ParentForm = vParentForm;
+            this.FBunUnder = vBunUnder;
 
             this.FTimer = new Timer();
             this.FTimer.Interval = 20;
@@ -107,8 +125,10 @@ namespace HamburgerGame {
                 FElapsedTime = 0;
             }
 
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wMoveFoodsCopy = new List<Food>(FMoveFoodList);
             //具材を落下させ、Y座標が描画されるPictureBoxのY座標に達した時削除される
-            foreach (Food wFood in FMoveFoodList.ToArray()) {
+            foreach (Food wFood in wMoveFoodsCopy) {
                 wFood.Move(0, C_FallingFoodSpeed);
 
                 if (wFood.Rectangle.Y > FAreaPlay.Height) {
@@ -138,6 +158,17 @@ namespace HamburgerGame {
         }
 
         /// <summary>
+        ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
+        /// </summary>
+        public void InitializeGameScreen() {
+            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッド、FAreaDisplay.Paint イベントDrawFCaughtListFoodメソッドをイベントハンドラとして登録
+            FAreaPlay.Paint += this.DrawFMoveListFood;
+            FAreaDisplay.Paint += this.DrawFCaughtListFood;
+            //最初の具材を追加する
+            this.AddNewFood();
+        }
+
+        /// <summary>
         /// 新しい具材を移動する具材のリストに追加するメソッド
         /// </summary>
         private void AddNewFood() {
@@ -161,30 +192,41 @@ namespace HamburgerGame {
         }
 
         /// <summary>
-        /// FMoveListの具材を描画するメソッド
+        /// FMoveFoodListの具材を描画するメソッド
         /// </summary>
         public void DrawFMoveListFood(object sender, PaintEventArgs e) {
-            foreach (Food wFood in FMoveFoodList.ToArray()) {
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wMoveFoodsCopy = new List<Food>(FMoveFoodList);
+            foreach (Food wFood in wMoveFoodsCopy) {
                 wFood.Draw(e.Graphics);
             }
         }
 
         /// <summary>
-        ///　ゲーム画面を初期化し、最初の具材を追加するメソッド
+        /// 獲得した具材をパン下部の上に生成するメソッド
         /// </summary>
-        public void InitializeGameScreen() {
-            //FAreaPlay.Paint イベントに DrawFMoveListFood メソッドをイベントハンドラとして登録
-            FAreaPlay.Paint += this.DrawFMoveListFood;
-            //最初の具材を追加する
-            this.AddNewFood();
+        public void StackCaughtFood() {
+            //獲得した具材の最初のY座標
+            int wStartY = FBunUnder.Bounds.Y - C_SomeBunUnderY;
+            foreach (Food wFood in FCaughtFoodList) {
+                // 描画位置の設定
+                wFood.Rectangle = new Rectangle(FBunUnder.Bounds.X - FAreaPlay.Width, wStartY, FBunUnder.Width, FBunUnder.Height);
+                wStartY -= C_SpaceOfCaughtFoodY;
+            }
+            // Area_Display を再描画する
+            FAreaDisplay.Invalidate();
         }
 
+
         /// <summary>
-        /// Plateの位置情報を取得するためのメソッド
+        /// FCaughtListFoodの具材を描画するメソッド
         /// </summary>
-        /// <returns>Plateの位置情報</returns>
-        private Rectangle GetPlateRectangle() {
-            return FPlate.PlatePictureBox.Bounds;
+        public void DrawFCaughtListFood(object sender, PaintEventArgs e) {
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wCaughtFoodsCopy = new List<Food>(FCaughtFoodList);
+            foreach (Food wFood in wCaughtFoodsCopy) {
+                wFood.Draw(e.Graphics);
+            }
         }
 
         /// <summary>
@@ -193,7 +235,9 @@ namespace HamburgerGame {
         private void ProcessCollisions() {
             Rectangle wPlateRect = this.GetPlateRectangle();
 
-            foreach (Food wFood in FMoveFoodList.ToArray()) {
+            // コレクション変更の可能性がある為、元のリストのコピーを作成
+            var wMoveFoodsCopy = new List<Food>(FMoveFoodList);
+            foreach (Food wFood in wMoveFoodsCopy) {
                 if (this.IsCollisions(wFood.Rectangle, wPlateRect)) {
                     this.HandleCollision(wFood);
                 }
@@ -219,10 +263,11 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vFood">具材</param>
         private void HandleCollision(Food vFood) {
-            FCatchedFoodList.Add(vFood);
+            FCaughtFoodList.Add(vFood);
 
+            StackCaughtFood();
             // 具材獲得時の効果音を追加する
-            new SoundPlayer(Properties.Resources.catched).Play();
+            new SoundPlayer(Properties.Resources.caught).Play();
 
             //終了判定を実行
             this.JudgeEndGetBunTop(vFood);
@@ -236,7 +281,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <returns>終了したか否かのフラグ</returns>
         private bool JudgeEndGetFiveFood() {
-            if (FCatchedFoodList.Count == C_MAXCatchedFoodNumber) {
+            if (FCaughtFoodList.Count == C_MAXCaughtFoodNumber) {
                 FIsEnd = true;
             }
             return FIsEnd;
@@ -254,6 +299,13 @@ namespace HamburgerGame {
             return FIsEnd;
         }
 
+        /// <summary>
+        /// Plateの位置情報を取得するためのメソッド
+        /// </summary>
+        /// <returns>Plateの位置情報</returns>
+        private Rectangle GetPlateRectangle() {
+            return FPlate.PlatePictureBox.Bounds;
+        }
 
         /// <summary>
         /// キー入力を受け取り、皿を移動させるメソッド

@@ -23,86 +23,86 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
-            this.Area_Play = new System.Windows.Forms.PictureBox();
-            this.Area_Display = new System.Windows.Forms.PictureBox();
-            this.Plate = new System.Windows.Forms.PictureBox();
-            this.bun_under = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Plate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bun_under)).BeginInit();
+            this.FAreaPlay = new System.Windows.Forms.PictureBox();
+            this.FAreaDisplay = new System.Windows.Forms.PictureBox();
+            this.FPlate = new System.Windows.Forms.PictureBox();
+            this.FBunUnder = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.FAreaPlay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FAreaDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FPlate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FBunUnder)).BeginInit();
             this.SuspendLayout();
             // 
-            // Area_Play
+            // FAreaPlay
             // 
-            this.Area_Play.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.Area_Play.BackColor = System.Drawing.Color.White;
-            this.Area_Play.Location = new System.Drawing.Point(-3, 1);
-            this.Area_Play.Name = "Area_Play";
-            this.Area_Play.Size = new System.Drawing.Size(703, 560);
-            this.Area_Play.TabIndex = 0;
-            this.Area_Play.TabStop = false;
+            this.FAreaPlay.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.FAreaPlay.BackColor = System.Drawing.Color.White;
+            this.FAreaPlay.Location = new System.Drawing.Point(-3, 1);
+            this.FAreaPlay.Name = "FAreaPlay";
+            this.FAreaPlay.Size = new System.Drawing.Size(703, 560);
+            this.FAreaPlay.TabIndex = 0;
+            this.FAreaPlay.TabStop = false;
             // 
-            // Area_Display
+            // FAreaDisplay
             // 
-            this.Area_Display.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.FAreaDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Area_Display.BackColor = System.Drawing.Color.Linen;
-            this.Area_Display.Location = new System.Drawing.Point(700, 1);
-            this.Area_Display.Name = "Area_Display";
-            this.Area_Display.Size = new System.Drawing.Size(285, 560);
-            this.Area_Display.TabIndex = 1;
-            this.Area_Display.TabStop = false;
+            this.FAreaDisplay.BackColor = System.Drawing.Color.Linen;
+            this.FAreaDisplay.Location = new System.Drawing.Point(700, 1);
+            this.FAreaDisplay.Name = "FAreaDisplay";
+            this.FAreaDisplay.Size = new System.Drawing.Size(285, 560);
+            this.FAreaDisplay.TabIndex = 1;
+            this.FAreaDisplay.TabStop = false;
             // 
-            // Plate
+            // FPlate
             // 
-            this.Plate.BackColor = System.Drawing.Color.Transparent;
-            this.Plate.Image = global::HamburgerGame.Properties.Resources.dish;
-            this.Plate.Location = new System.Drawing.Point(293, 499);
-            this.Plate.Name = "Plate";
-            this.Plate.Size = new System.Drawing.Size(158, 51);
-            this.Plate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Plate.TabIndex = 2;
-            this.Plate.TabStop = false;
+            this.FPlate.BackColor = System.Drawing.Color.Transparent;
+            this.FPlate.Image = global::HamburgerGame.Properties.Resources.dish;
+            this.FPlate.Location = new System.Drawing.Point(293, 499);
+            this.FPlate.Name = "FPlate";
+            this.FPlate.Size = new System.Drawing.Size(158, 51);
+            this.FPlate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FPlate.TabIndex = 2;
+            this.FPlate.TabStop = false;
             // 
-            // bun_under
+            // FBunUnder
             // 
-            this.bun_under.Image = global::HamburgerGame.Properties.Resources.bun_under;
-            this.bun_under.Location = new System.Drawing.Point(775, 452);
-            this.bun_under.Name = "bun_under";
-            this.bun_under.Size = new System.Drawing.Size(156, 59);
-            this.bun_under.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.bun_under.TabIndex = 3;
-            this.bun_under.TabStop = false;
+            this.FBunUnder.Image = global::HamburgerGame.Properties.Resources.bun_under;
+            this.FBunUnder.Location = new System.Drawing.Point(775, 452);
+            this.FBunUnder.Name = "FBunUnder";
+            this.FBunUnder.Size = new System.Drawing.Size(156, 59);
+            this.FBunUnder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FBunUnder.TabIndex = 3;
+            this.FBunUnder.TabStop = false;
             // 
             // HamburgerGAME
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.bun_under);
-            this.Controls.Add(this.Plate);
-            this.Controls.Add(this.Area_Display);
-            this.Controls.Add(this.Area_Play);
+            this.Controls.Add(this.FBunUnder);
+            this.Controls.Add(this.FPlate);
+            this.Controls.Add(this.FAreaDisplay);
+            this.Controls.Add(this.FAreaPlay);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HamburgerGAME";
             this.Text = "ハンバーガーゲーム";
-            ((System.ComponentModel.ISupportInitialize)(this.Area_Play)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Area_Display)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Plate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bun_under)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FAreaPlay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FAreaDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FPlate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FBunUnder)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox Area_Play;
-        private System.Windows.Forms.PictureBox Area_Display;
-        private System.Windows.Forms.PictureBox Plate;
-        private System.Windows.Forms.PictureBox bun_under;
+        private System.Windows.Forms.PictureBox FAreaPlay;
+        private System.Windows.Forms.PictureBox FAreaDisplay;
+        private System.Windows.Forms.PictureBox FPlate;
+        private System.Windows.Forms.PictureBox FBunUnder;
     }
 }
 
