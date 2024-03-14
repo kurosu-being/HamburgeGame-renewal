@@ -37,7 +37,7 @@ namespace HamburgerGame {
         }
 
         private void HamburgerGAME_FormClosing(object sender, FormClosingEventArgs e) {
-            // ゲームの終了処理を実行
+            //ゲームタイマーを止め、タイマーを破棄
             FGameLogic.StopTimer();
 
             var wMainMenuForm = Application.OpenForms["MainMenu"];
