@@ -44,15 +44,15 @@ namespace HamburgerGame {
             // クローズ理由がユーザーによる×ボタンのクリックかどうかを確認
             if (e.CloseReason == CloseReason.UserClosing) {
                 // 確認ダイアログを表示
-                DialogResult wResult = MessageBox.Show("MainMenuに戻りますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult wResult = MessageBox.Show("MainMenuに戻ります。よろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 // ダイアログの結果によって処理を分岐
                 if (wResult == DialogResult.Yes) {
                     if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
-                        wMainMenuForm.Show();                      
+                        wMainMenuForm.Show();
                     } else {
                         // エラーメッセージを表示して例外をスロー
-                        throw new Exception("メインメニューフォームが見つかりませんでした。開発者に連絡してください。");
+                        throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
                     }
                 } else {
                     //フォームを閉じるがキャンセルする
