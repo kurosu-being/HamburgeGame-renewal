@@ -35,31 +35,20 @@ namespace HamburgerGame {
         private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
             FGameLogic.ProcessKeyPress(e.KeyCode, FAreaPlay.Width);
         }
-        private void HamburgerGAME_Load_1(object sender, EventArgs e) {
-        }
 
         private void HamburgerGAME_FormClosing(object sender, FormClosingEventArgs e) {
+            // ゲームの終了処理を実行
+            FGameLogic.StopTimer();
+
             var wMainMenuForm = Application.OpenForms["MainMenu"];
 
-            // クローズ理由がユーザーによる×ボタンのクリックかどうかを確認
-            if (e.CloseReason == CloseReason.UserClosing) {
-                // 確認ダイアログを表示
-                DialogResult wResult = MessageBox.Show("MainMenuに戻ります。よろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                // ダイアログの結果によって処理を分岐
-                if (wResult == DialogResult.Yes) {
-                    if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
-                        wMainMenuForm.Show();
-                    } else {
-                        // エラーメッセージを表示して例外をスロー
-                        throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
-                    }
-                } else {
-                    //フォームを閉じるがキャンセルする
-                    e.Cancel = true;
-                }
+            if (wMainMenuForm == null || !(wMainMenuForm is MainMenu)) {
+                throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
             }
+
+            wMainMenuForm.Show();
         }
     }
 }
+
 

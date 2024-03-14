@@ -144,7 +144,7 @@ namespace HamburgerGame {
 
             // 終了判定を実行
             if (FIsEnd) {
-                FTimer.Stop();
+                StopTimer();
                 //終了判定trueの時、ResultScreenに遷移する
                 var wResultScreen = new ResultScreen();
                 //終了画面を表示
@@ -312,6 +312,14 @@ namespace HamburgerGame {
         /// </summary>
         public void ProcessKeyPress(Keys key, int vAreaWidth) {
             FPlate.MovePlate(key, vAreaWidth);
+        }
+
+        /// <summary>
+        /// タイマーを停止し、タイマーを破棄するメソッド
+        /// </summary>
+        public void StopTimer() {
+            FTimer.Stop();
+            FTimer.Dispose();
         }
     }
 }

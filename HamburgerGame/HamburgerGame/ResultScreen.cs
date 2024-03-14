@@ -5,54 +5,39 @@ namespace HamburgerGame {
     public partial class ResultScreen : Form {
         public ResultScreen() {
             InitializeComponent();
+            // キー入力をフォームが優先的に受け取るようにする
+            this.KeyPreview = true;
+            // フォームのKeyDownイベントにイベントハンドラを関連付ける
+            this.KeyDown += ResultScreen_KeyDown;
         }
-        private void ResultScreen_KeyDown(object vSender, KeyEventArgs e) {
-            var wMainMenuForm = Application.OpenForms["MainMenu"];
 
-            // Enterを押すとメインフォームを表示
-            if (e.KeyCode == Keys.Enter) {
+        private void ResultScreen_KeyDown(object sender, KeyEventArgs e) {
+            HandleEnterKeyPress();
+        }
 
-                if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
-                    // 現在のフォームを閉じる
-                    this.Close();
-                } else {// エラーメッセージを表示して例外をスロー
-                    throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
-                }
+        private void HandleEnterKeyPress() {
+            var wMainMenuForm = GetOpenForm<MainMenu>("MainMenu");
+            this.Close();
+        }
+
+        private TForm GetOpenForm<TForm>(string vFormName) where TForm : Form {
+            var wForm = Application.OpenForms[vFormName];
+            if (wForm == null || !(wForm is TForm)) {
+                throw new Exception($"{typeof(TForm).Name} フォームが見つかりませんでした。フォーム名を確認してください。");
             }
-        }
+            return (TForm)wForm;
+        } 
 
         private void ResultScreen_FormClosing(object sender, FormClosingEventArgs e) {
-            var wMainMenuForm = Application.OpenForms["MainMenu"];
-            var wHamburgerGAME = Application.OpenForms["HamburgerGAME"];
+            var wMainMenuForm = GetOpenForm<MainMenu>("MainMenu");
+            var wHamburgerGAME = GetOpenForm<HamburgerGAME>("HamburgerGAME");
 
-            if (wMainMenuForm == null || !(wMainMenuForm is MainMenu)) {
-                throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
-            }
-
-            if (wHamburgerGAME == null || !(wHamburgerGAME is HamburgerGAME)) {
-                throw new Exception("ハンバーガーゲームフォームが見つかりませんでした。開発者に連絡してください。");
-            }
-
-            // クローズ理由がユーザーによる×ボタンのクリックかどうかを確認
-            if (e.CloseReason == CloseReason.UserClosing) {
-                // 確認ダイアログを表示
-                DialogResult wResult = MessageBox.Show("MainMenuに戻ります。よろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                // ダイアログの結果によって処理を分岐
-                if (wResult == DialogResult.Yes) {
-
-                    // メインメニューフォームを表示
-                    wMainMenuForm.Show();
-
-                    // ゲーム画面が存在する場合、破棄する
-                    if (wHamburgerGAME != null) {
-                        wHamburgerGAME.Dispose();
-                    }
-                } else {
-                    //フォームを閉じるがキャンセルする
-                    e.Cancel = true;
-                }
-            }
+            // メインメニューフォームを表示
+            wMainMenuForm.Show();
+            // ゲーム画面が存在する場合、フォームを閉じる
+            wHamburgerGAME?.Close();
         }
     }
 }
+
+
