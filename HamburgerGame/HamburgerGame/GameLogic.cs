@@ -153,7 +153,7 @@ namespace HamburgerGame {
                 // ゲーム終了時の効果音を追加する
                 new SoundPlayer(Properties.Resources.fanfare).Play();
 
-                this.ParentForm.Close();
+                this.ParentForm.Hide();
             }
         }
 
