@@ -1,6 +1,6 @@
 ﻿namespace HamburgerGame
 {
-    partial class ResultScreen
+    partial class ResultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -61,19 +61,20 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(283, 29);
             this.label2.TabIndex = 2;
-            this.label2.Text = "MainMenuに戻る [Enter]";
+            this.label2.Text = "MainMenuFormに戻る [Enter]";
             // 
-            // ResultScreen
+            // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "ResultScreen";
-            this.Text = "ResultScreen";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultScreen_KeyDown);
+            this.Name = "ResultForm";
+            this.Text = "ResultForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

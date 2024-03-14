@@ -4,11 +4,11 @@ using System.Media;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
-    public partial class MainMenu : Form {
+    public partial class MainMenuForm : Form {
         /// <summary>
         /// MainMenuFormクラスのコンストラクタ
         /// </summary>
-        public MainMenu() {
+        public MainMenuForm() {
             InitializeComponent();
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vSender">イベントの発生源</param>
         /// <param name="e">イベント データを格納している EventArgs</param>
-        private void MainMenu_Load(object vSender, EventArgs e) {
+        private void MainMenuForm_Load(object vSender, EventArgs e) {
             // ラベルがピクチャーボックスの子コントロールになるように設定  
             this.FHamburgerShop.Controls.Add(this.Label);
             // ラベルを透明色に設定  

@@ -89,7 +89,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HamburgerGAME";
-            this.Text = "ハンバーガーゲーム";
+            this.Text = "HamburgerGAME";
             ((System.ComponentModel.ISupportInitialize)(this.FAreaPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FAreaDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPlate)).EndInit();
