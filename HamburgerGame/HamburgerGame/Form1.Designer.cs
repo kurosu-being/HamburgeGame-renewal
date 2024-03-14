@@ -68,6 +68,7 @@
             // 
             // FBunUnder
             // 
+            this.FBunUnder.BackColor = System.Drawing.Color.Linen;
             this.FBunUnder.Image = global::HamburgerGame.Properties.Resources.bun_under;
             this.FBunUnder.Location = new System.Drawing.Point(775, 452);
             this.FBunUnder.Name = "FBunUnder";
