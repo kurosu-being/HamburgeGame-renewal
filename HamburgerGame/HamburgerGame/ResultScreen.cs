@@ -12,12 +12,9 @@ namespace HamburgerGame {
         }
 
         private void ResultScreen_KeyDown(object sender, KeyEventArgs e) {
-            HandleEnterKeyPress();
-        }
-
-        private void HandleEnterKeyPress() {
-            var wMainMenuForm = GetOpenForm<MainMenu>("MainMenu");
-            this.Close();
+            if (e.KeyCode == Keys.Enter) {
+                this.Close();
+            }
         }
 
         private TForm GetOpenForm<TForm>(string vFormName) where TForm : Form {
@@ -35,7 +32,7 @@ namespace HamburgerGame {
             // メインメニューフォームを表示
             wMainMenuForm.Show();
             // ゲーム画面が存在する場合、フォームを閉じる
-            wHamburgerGAME?.Close();
+            wHamburgerGAME.Close();
         }
     }
 }
