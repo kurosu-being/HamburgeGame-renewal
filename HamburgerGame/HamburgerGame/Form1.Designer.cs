@@ -89,6 +89,7 @@
             this.MinimizeBox = false;
             this.Name = "HamburgerGAME";
             this.Text = "ハンバーガーゲーム";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HamburgerGAME_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.FAreaPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FAreaDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPlate)).EndInit();

@@ -127,6 +127,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "ResultScreen";
             this.Text = "ResultScreen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ResultScreen_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultScreen_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

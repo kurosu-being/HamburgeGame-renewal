@@ -35,7 +35,20 @@ namespace HamburgerGame {
         private void HamburgerGAME_KeyDown(object sender, KeyEventArgs e) {
             FGameLogic.ProcessKeyPress(e.KeyCode, FAreaPlay.Width);
         }
-        private void HamburgerGAME_Load_1(object sender, EventArgs e) {
+
+        private void HamburgerGAME_FormClosing(object sender, FormClosingEventArgs e) {
+            //ゲームタイマーを止め、タイマーを破棄
+            FGameLogic.StopTimer();
+
+            var wMainMenuForm = Application.OpenForms["MainMenu"];
+
+            if (wMainMenuForm is MainMenu){
+                wMainMenuForm.Show();
+            } else {
+                throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
+            }
         }
     }
 }
+
+

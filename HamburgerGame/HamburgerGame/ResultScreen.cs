@@ -5,21 +5,36 @@ namespace HamburgerGame {
     public partial class ResultScreen : Form {
         public ResultScreen() {
             InitializeComponent();
+            // キー入力をフォームが優先的に受け取るようにする
+            this.KeyPreview = true;
+            // フォームのKeyDownイベントにイベントハンドラを関連付ける
+            this.KeyDown += ResultScreen_KeyDown;
         }
-        private void ResultScreen_KeyDown(object vSender, KeyEventArgs e) {
-            var wMainMenuForm = Application.OpenForms["MainMenu"];
 
-            // Enterを押すとメインフォームを表示
+        private void ResultScreen_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
-
-                if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
-                    wMainMenuForm.Show();
-                } else {// エラーメッセージを表示して例外をスロー
-                    throw new Exception("メインメニューフォームが見つかりませんでした。開発者に連絡してください。");
-                }
-                // 現在のフォームを閉じる
                 this.Close();
             }
         }
+
+        private TForm GetOpenForm<TForm>(string vFormName) where TForm : Form {
+            var wForm = Application.OpenForms[vFormName];
+            if (wForm == null || !(wForm is TForm)) {
+                throw new Exception($"{typeof(TForm).Name} フォームが見つかりませんでした。フォーム名を確認してください。");
+            }
+            return (TForm)wForm;
+        } 
+
+        private void ResultScreen_FormClosing(object sender, FormClosingEventArgs e) {
+            var wMainMenuForm = GetOpenForm<MainMenu>("MainMenu");
+            var wHamburgerGAME = GetOpenForm<HamburgerGAME>("HamburgerGAME");
+
+            // メインメニューフォームを表示
+            wMainMenuForm.Show();
+            // ゲーム画面が存在する場合、フォームを閉じる
+            wHamburgerGAME.Close();
+        }
     }
 }
+
+
