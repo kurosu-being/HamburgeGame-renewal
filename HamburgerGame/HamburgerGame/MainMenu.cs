@@ -18,7 +18,7 @@ namespace HamburgerGame {
         /// <param name="e">イベント データを格納している EventArgs</param>
         private void Label_Click(object vSender, EventArgs e) {
             // ゲーム画面のインスタンスを作成
-            var wForm1 = new HamburgerGAME();
+            var wForm1 = new Form1();
 
             // ゲーム画面を表示
             wForm1.Show();

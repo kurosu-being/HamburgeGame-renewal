@@ -145,7 +145,7 @@ namespace HamburgerGame {
             if (FIsEnd) {
                 FTimer.Stop();
                 //終了判定trueの時、ResultFormに遷移する
-                var wResultForm = new ResultForm(this);
+                var wResultForm = new ResultScreen(this);
                 //終了画面を表示
                 wResultForm.Show();
 
