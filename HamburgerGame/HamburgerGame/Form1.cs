@@ -42,7 +42,7 @@ namespace HamburgerGame {
 
             var wMainMenuForm = Application.OpenForms["MainMenu"];
 
-            if (wMainMenuForm != null && wMainMenuForm is MainMenu){
+            if (wMainMenuForm is MainMenu){
                 wMainMenuForm.Show();
             } else {
                 throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
