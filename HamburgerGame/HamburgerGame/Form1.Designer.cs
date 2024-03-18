@@ -1,5 +1,5 @@
 ﻿namespace HamburgerGame {
-    partial class HamburgerGAME {
+    partial class Form1 {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

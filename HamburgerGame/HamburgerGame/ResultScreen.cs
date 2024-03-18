@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
-    public partial class ResultForm : Form {
+    public partial class ResultScreen : Form {
         private readonly GameLogic FGameLogic;
-        public ResultForm(GameLogic vGameLogic) {
+        public ResultScreen(GameLogic vGameLogic) {
             InitializeComponent();
             this.FGameLogic = vGameLogic;
             DrawCaughtFoods();
@@ -31,7 +31,7 @@ namespace HamburgerGame {
             // Enterを押すとメインフォームを表示
             if (e.KeyCode == Keys.Enter) {
 
-                if (wMainMenuForm != null && wMainMenuForm is MainMenuForm) {
+                if (wMainMenuForm != null && wMainMenuForm is MainMenu) {
                     wMainMenuForm.Show();
                 } else {// エラーメッセージを表示して例外をスロー
                     throw new Exception("メインメニューフォームが見つかりませんでした。開発者に連絡してください。");

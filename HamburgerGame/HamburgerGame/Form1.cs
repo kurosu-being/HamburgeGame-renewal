@@ -5,13 +5,13 @@ namespace HamburgerGame {
     /// <summary>
     /// ゲームプレイのクラス
     /// </summary>
-    public partial class HamburgerGAME : Form {
+    public partial class Form1 : Form {
         /// <summary>
         ///  GameLogicクラスのインスタンス
         /// </summary>
         private GameLogic FGameLogic;
 
-        public HamburgerGAME() {
+        public Form1() {
             InitializeComponent();
             InitializeGame();
 

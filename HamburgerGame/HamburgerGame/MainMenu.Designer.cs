@@ -1,6 +1,6 @@
 ﻿namespace HamburgerGame
 {
-    partial class MainMenuForm
+    partial class MainMenu
     {
         /// <summary>
         /// Required designer variable.

@@ -4,11 +4,11 @@ using System.Media;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
-    public partial class MainMenuForm : Form {
+    public partial class MainMenu : Form {
         /// <summary>
         /// MainMenuFormクラスのコンストラクタ
         /// </summary>
-        public MainMenuForm() {
+        public MainMenu() {
             InitializeComponent();
         }
         /// <summary>

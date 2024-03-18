@@ -1,6 +1,6 @@
 ﻿namespace HamburgerGame
 {
-    partial class ResultForm
+    partial class ResultScreen
     {
         /// <summary>
         /// Required designer variable.
