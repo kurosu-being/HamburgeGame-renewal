@@ -67,7 +67,7 @@ namespace HamburgerGame {
         /// <summary>
         /// 獲得した具材のリスト
         /// </summary>
-        public List<Food> CaughtFoodList { get; set; }
+        public List<Food> CaughtFoodList { get; }
         /// <summary>
         /// パン下部のPictureBox
         /// </summary>
@@ -145,7 +145,7 @@ namespace HamburgerGame {
             if (FIsEnd) {
                 FTimer.Stop();
                 //終了判定trueの時、ResultFormに遷移する
-                var wResultForm = new ResultScreen(CaughtFoodList);
+                var wResultForm = new ResultScreen(this.CaughtFoodList);
                 //終了画面を表示
                 wResultForm.Show();
 
