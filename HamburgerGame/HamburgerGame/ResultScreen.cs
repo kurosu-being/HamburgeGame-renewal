@@ -1,26 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
     public partial class ResultScreen : Form {
-        private readonly GameLogic FGameLogic;
-        public ResultScreen(GameLogic vGameLogic) {
+        private readonly List<Food> FFoodList;
+        public ResultScreen(List<Food> vFood) {
             InitializeComponent();
-            this.FGameLogic = vGameLogic;
+            this.FFoodList = vFood;
             DrawCaughtFoods();
             this.Paint += ResultForm_Paint;
         }
         private void DrawCaughtFoods() {
             int wStartY;
-            if (FGameLogic.CaughtFoodList.Count > 0 && FGameLogic.CaughtFoodList[0].FoodInfo.Name == "cheese") {
+            if (FFoodList.Count > 0 && FFoodList[0].FoodInfo.Name == "cheese") {
                 //最初がチーズの場合のY座標
                 wStartY = FBunUnder.Location.Y -10;
             } else {
                 //チーズ以外の場合のY座標
                 wStartY = FBunUnder.Location.Y - 40;
             }
-            foreach (Food wFood in FGameLogic.CaughtFoodList) {
+            foreach (Food wFood in FFoodList) {
                 wFood.Rectangle = new Rectangle(FBunUnder.Location.X, wStartY, FBunUnder.Width, FBunUnder.Height);
                 wStartY -= 25;
             }
@@ -43,19 +44,19 @@ namespace HamburgerGame {
         private void ResultForm_Paint(object sender, PaintEventArgs e) {
             DrawDish(e.Graphics);
             DrawBunUnder(e.Graphics);
-            foreach (Food wFood in FGameLogic.CaughtFoodList) {
+            foreach (Food wFood in FFoodList) {
                 wFood.Draw(e.Graphics);
             }
         }
         private void DrawBunUnder(Graphics g) {
             // bun_under イメージを描画する矩形を作成
-            Rectangle wDestinationRect = new Rectangle(FBunUnder.Location.X, FBunUnder.Location.Y, FBunUnder.Width, FBunUnder.Height);
+            var wDestinationRect = new Rectangle(FBunUnder.Location.X, FBunUnder.Location.Y, FBunUnder.Width, FBunUnder.Height);
             // bun_under イメージを描画
             g.DrawImage(Properties.Resources.bun_under, wDestinationRect);
         }
         private void DrawDish(Graphics g) {
             // dish イメージを描画する矩形を作成
-            Rectangle wDestinationRect = new Rectangle(FDish.Location.X, FDish.Location.Y, FDish.Width, FDish.Height);
+            var wDestinationRect = new Rectangle(FDish.Location.X, FDish.Location.Y, FDish.Width, FDish.Height);
             // dish イメージを描画
             g.DrawImage(Properties.Resources.dish, wDestinationRect);
         }
