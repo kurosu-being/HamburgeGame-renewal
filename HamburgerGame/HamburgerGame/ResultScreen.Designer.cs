@@ -48,7 +48,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.label2.Location = new System.Drawing.Point(349, 493);
+            this.label2.Location = new System.Drawing.Point(349, 474);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(282, 29);
             this.label2.TabIndex = 2;
