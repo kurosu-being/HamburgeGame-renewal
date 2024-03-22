@@ -5,23 +5,23 @@ using System.Windows.Forms;
 
 namespace HamburgerGame {
     public partial class ResultScreen : Form {
-        private readonly List<Food> FFood;
+        private readonly List<Food> FFoods;
         public ResultScreen(List<Food> vFood) {
             InitializeComponent();
-            this.FFood = vFood;
+            this.FFoods = vFood;
             DrawCaughtFoods();
             this.Paint += ResultForm_Paint;
         }
         private void DrawCaughtFoods() {
             int wStartY;
-            if (FFood.Count > 0 && FFood[0].FoodInfo.Name == "cheese") {
+            if (FFoods.Count > 0 && FFoods[0].FoodInfo.Name == "cheese") {
                 //最初がチーズの場合のY座標
                 wStartY = FBunUnder.Location.Y -10;
             } else {
                 //チーズ以外の場合のY座標
                 wStartY = FBunUnder.Location.Y - 40;
             }
-            foreach (Food wFood in FFood) {
+            foreach (Food wFood in FFoods) {
                 wFood.Rectangle = new Rectangle(FBunUnder.Location.X, wStartY, FBunUnder.Width, FBunUnder.Height);
                 wStartY -= 25;
             }
@@ -55,7 +55,7 @@ namespace HamburgerGame {
         private void ResultForm_Paint(object sender, PaintEventArgs e) {
             DrawDish(e.Graphics);
             DrawBunUnder(e.Graphics);
-            foreach (Food wFood in FFood) {
+            foreach (Food wFood in FFoods) {
                 wFood.Draw(e.Graphics);
             }
         }
