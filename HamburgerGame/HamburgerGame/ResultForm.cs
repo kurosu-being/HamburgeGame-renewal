@@ -4,18 +4,18 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace HamburgerGame {
-    public partial class ResultScreen : Form {
+    public partial class ResultForm : Form {
         private readonly List<Food> FFoods;
-        public ResultScreen(List<Food> vFood) {
+        public ResultForm(List<Food> vFood) {
             InitializeComponent();
             // キー入力をフォームが優先的に受け取るようにする
             this.KeyPreview = true;
             // フォームのKeyDownイベントにイベントハンドラを関連付ける
-            this.KeyDown += ResultScreen_KeyDown;
+            this.KeyDown += ResultForm_KeyDown;
 
             this.FFoods = vFood;
             DrawCaughtFoods();
-            this.Paint += ResultScreen_Paint;
+            this.Paint += ResultForm_Paint;
         }
         private void DrawCaughtFoods() {
             int wStartY;
@@ -32,13 +32,6 @@ namespace HamburgerGame {
             }
         }
 
-        private void ResultScreen_KeyDown(object sender, KeyEventArgs e) {
-            var wMainMenuForm = Application.OpenForms["MainMenuForm"];
-            if (e.KeyCode == Keys.Enter) {
-                this.Close();
-            }
-        }
-
         private TForm GetOpenForm<TForm>(string vFormName) where TForm : Form {
             var wForm = Application.OpenForms[vFormName];
             if (wForm == null || !(wForm is TForm)) {
@@ -47,20 +40,11 @@ namespace HamburgerGame {
             return (TForm)wForm;
         }
 
-        private void ResultScreen_FormClosing(object sender, FormClosingEventArgs e) {
-            var wMainMenuForm = GetOpenForm<MainMenu>("MainMenu");
-            var wHamburgerGAME = GetOpenForm<HamburgerGAME>("HamburgerGAME");
-
-            // メインメニューフォームを表示
-            wMainMenuForm.Show();
-            // ゲーム画面が存在する場合、フォームを閉じる
-            wHamburgerGAME.Close();
-        }
         private void label2_Click(object sender, EventArgs e) {
-            var wMainMenu = Application.OpenForms["MainMenu"];
+            var wMainMenuForm = Application.OpenForms["MainMenuForm"];
 
-            if (wMainMenu != null && wMainMenu is MainMenu) {
-                wMainMenu.Show();
+            if (wMainMenuForm != null && wMainMenuForm is MainMenuForm) {
+                wMainMenuForm.Show();
             } else {// エラーメッセージを表示して例外をスロー
                 throw new Exception("メインメニューフォームが見つかりませんでした。開発者に連絡してください。");
             }
@@ -80,16 +64,29 @@ namespace HamburgerGame {
             // dish イメージを描画
             g.DrawImage(Properties.Resources.dish, wDestinationRect);
         }
+        private void ResultForm_KeyDown(object sender, KeyEventArgs e) {
+            var wMainMenuForm = Application.OpenForms["MainMenuForm"];
+            if (e.KeyCode == Keys.Enter) {
+                this.Close();
+            }
+        }
 
-        private void ResultScreen_Paint(object sender, PaintEventArgs e) {
+        private void ResultForm_Paint(object sender, PaintEventArgs e) {
             DrawDish(e.Graphics);
             DrawBunUnder(e.Graphics);
             foreach (Food wFood in FFoods) {
                 wFood.Draw(e.Graphics);
             }
         }
+
+        private void ResultForm_FormClosing(object sender, FormClosingEventArgs e) {
+            var wMainMenuForm = GetOpenForm<MainMenuForm>("MainMenuForm");
+            var wHamburgerGAME = GetOpenForm<HamburgerGAME>("HamburgerGAME");
+
+            // メインメニューフォームを表示
+            wMainMenuForm.Show();
+            // ゲーム画面が存在する場合、フォームを閉じる
+            wHamburgerGAME.Close();
+        }
     }
 }
-
-
-

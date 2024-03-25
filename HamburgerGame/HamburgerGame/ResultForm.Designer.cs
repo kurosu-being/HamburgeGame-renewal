@@ -1,6 +1,6 @@
 ﻿namespace HamburgerGame
 {
-    partial class ResultScreen
+    partial class ResultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.FBunUnder.TabStop = false;
             this.FBunUnder.Visible = false;
             // 
-            // ResultScreen
+            // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,11 +89,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FDish);
-            this.Name = "ResultScreen";
-            this.Text = "ResultScreen";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ResultScreen_FormClosing);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ResultScreen_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultScreen_KeyDown);
+            this.Name = "ResultForm";
+            this.Text = "ResultForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ResultForm_FormClosing);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ResultForm_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.FDish)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FBunUnder)).EndInit();
             this.ResumeLayout(false);

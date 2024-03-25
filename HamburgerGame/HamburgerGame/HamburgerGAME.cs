@@ -40,9 +40,9 @@ namespace HamburgerGame {
             //ゲームタイマーを止め、タイマーを破棄
             FGameLogic.StopTimer();
 
-            var wMainMenuForm = Application.OpenForms["MainMenu"];
+            var wMainMenuForm = Application.OpenForms["MainMenuForm"];
 
-            if (wMainMenuForm is MainMenu){
+            if (wMainMenuForm is MainMenuForm){
                 wMainMenuForm.Show();
             } else {
                 throw new Exception("メインメニューフォームが見つかりませんでした。フォーム名を確認してください。");
@@ -50,5 +50,3 @@ namespace HamburgerGame {
         }
     }
 }
-
-
