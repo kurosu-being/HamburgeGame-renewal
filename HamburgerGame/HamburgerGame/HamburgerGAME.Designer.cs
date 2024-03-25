@@ -68,6 +68,7 @@
             // 
             // FBunUnder
             // 
+            this.FBunUnder.BackColor = System.Drawing.Color.Linen;
             this.FBunUnder.Image = global::HamburgerGame.Properties.Resources.bun_under;
             this.FBunUnder.Location = new System.Drawing.Point(775, 452);
             this.FBunUnder.Name = "FBunUnder";
@@ -88,8 +89,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HamburgerGAME";
-            this.Text = "ハンバーガーゲーム";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HamburgerGAME_FormClosing);
+            this.Text = "HamburgerGAME";
             ((System.ComponentModel.ISupportInitialize)(this.FAreaPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FAreaDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPlate)).EndInit();

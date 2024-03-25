@@ -52,10 +52,11 @@
             // FHamburgerShop
             // 
             this.FHamburgerShop.BackColor = System.Drawing.Color.Transparent;
+            this.FHamburgerShop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.FHamburgerShop.Image = global::HamburgerGame.Properties.Resources.HambugerSHOP;
             this.FHamburgerShop.Location = new System.Drawing.Point(177, 0);
             this.FHamburgerShop.Name = "FHamburgerShop";
-            this.FHamburgerShop.Size = new System.Drawing.Size(450, 450);
+            this.FHamburgerShop.Size = new System.Drawing.Size(647, 557);
             this.FHamburgerShop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.FHamburgerShop.TabIndex = 0;
             this.FHamburgerShop.TabStop = false;

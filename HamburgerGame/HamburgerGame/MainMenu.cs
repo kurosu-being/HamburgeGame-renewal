@@ -34,7 +34,8 @@ namespace HamburgerGame {
         /// </summary>
         /// <param name="vSender">イベントの発生源</param>
         /// <param name="e">イベント データを格納している EventArgs</param>
-        private void MainMenu_Load(object vSender, EventArgs e) {
+
+        private void MainMenu_Load(object sender, EventArgs e) {
             // ラベルがピクチャーボックスの子コントロールになるように設定  
             this.FHamburgerShop.Controls.Add(this.Label);
             // ラベルを透明色に設定  
