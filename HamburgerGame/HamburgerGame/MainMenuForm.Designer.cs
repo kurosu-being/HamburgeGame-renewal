@@ -1,6 +1,6 @@
 ﻿namespace HamburgerGame
 {
-    partial class MainMenu
+    partial class MainMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -61,7 +61,7 @@
             this.FHamburgerShop.TabIndex = 0;
             this.FHamburgerShop.TabStop = false;
             // 
-            // MainMenu
+            // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -69,11 +69,11 @@
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.Label);
             this.Controls.Add(this.FHamburgerShop);
-            this.Name = "MainMenu";
+            this.Name = "MainMenuForm";
             this.RightToLeftLayout = true;
-            this.Text = "MainMenu";
+            this.Text = "MainMenuForm";
             this.TransparencyKey = System.Drawing.Color.Magenta;
-            this.Load += new System.EventHandler(this.MainMenu_Load);
+            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FHamburgerShop)).EndInit();
             this.ResumeLayout(false);
 
